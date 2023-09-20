@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/assets/game.css">
 
   <script>
-    var currentCategoryId = 1;
+    var currentCategoryId = 2;
 
     function getCategoryId() {
       return currentCategoryId++;
@@ -33,31 +33,22 @@
         <div class="explanation">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         </div>
-        <button class="submit" hx-get="/start_game" hx-target="body">Play</button>
+        <button class="submit" hx-get="/start_game" hx-target="body" hx-swap="outerHTML">Play</button>
       </div>
 
       {% else %}
 
-      <div class="flexparentcol playarea">
-
-        {% for line in lines %}
-        <div class="flexparentrow playline">
-          <div class="category">{{ line.category }}</div>
-          <div class="divider"></div>
-          <div class="answer">{{ line.answer }}</div>
-        </div>
-        {% endfor %}
-
-      </div>
+      {% include 'playarea' %}
 
       <!-- poll new categories -->
       <!-- todo: somehow remove the initial wait and only reload playarea, otherwise the edit will be overwritten-->
       <div 
-        hx-get="/category" 
-        hx-trigger="every 7s"
-        hx-target="body"
-        hx-vals='js:{"id": getCategoryId()}'
-        style="display: none;"
+          hx-get="/category" 
+          hx-trigger="every 7s"
+          hx-target=".playarea"
+          hx-swap="outerHTML"
+          hx-vals='js:{"id": getCategoryId()}'
+          style="display: none;"
       >
       </div>
 

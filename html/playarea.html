@@ -1,0 +1,11 @@
+<div class="flexparentcol playarea">
+
+    {% for line in lines %}
+    <div class="flexparentrow playline">
+        <div class="category">{{ line.category }}</div>
+        <div class="divider"></div>
+        <div class="answer">{{ line.answer }}</div>
+    </div>
+    {% endfor %}
+
+</div>
