@@ -1,0 +1,89 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Who's that SuperGM?</title>
+  <meta name="description" content="Guess the SuperGM.">
+  <meta name="author" content="Philipp Otto">
+
+  <script src="/assets/htmx.min.js"></script>
+  <link rel="stylesheet" href="/assets/game.css">
+
+  <script>
+    var currentCategoryId = 1;
+
+    function getCategoryId() {
+      return currentCategoryId++;
+    }
+  </script>
+</head>
+
+<body>
+  <div class="flexparentrow container">
+    <div class="left-chessboard"></div>
+    <div class="background">
+      <h1>Who's that SuperGM?</h1>
+
+      {% if start_screen %}
+
+      <div class="flexparentcol playarea">
+        <div class="explanation">
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </div>
+        <button class="submit" hx-get="/start_game" hx-target="body">Play</button>
+      </div>
+
+      {% else %}
+
+      <div class="flexparentcol playarea">
+
+        {% for line in lines %}
+        <div class="flexparentrow playline">
+          <div class="category">{{ line.category }}</div>
+          <div class="divider"></div>
+          <div class="answer">{{ line.answer }}</div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+      <!-- poll new categories -->
+      <!-- todo: somehow remove the initial wait and only reload playarea, otherwise the edit will be overwritten-->
+      <div 
+        hx-get="/category" 
+        hx-trigger="every 7s"
+        hx-target="body"
+        hx-vals='js:{"id": getCategoryId()}'
+        style="display: none;"
+      >
+      </div>
+
+      {% endif %}
+
+      <div class="flexparentcol bottom">
+
+        {% if not start_screen %}
+        <div class="flexparentrow editparent">
+          <input class="textedit"></input>
+          <button class="submit">Submit</button>
+        </div>
+        {% endif %}
+  
+        <div class="footer">
+          © Philipp Otto 2023 - Created with
+          <a href="https://www.rust-lang.org/">Rust</a>
+          and 
+          <a href="https://htmx.org/">htmx</a>
+          ❤️ Hosted by 
+          <a href="https://fly.io/">fly.io</a>
+          🚀
+        </div>
+      </div>
+    </div>
+    <div class="right-chessboard"></div>
+  </div>
+</body>
+</html>
