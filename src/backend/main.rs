@@ -17,12 +17,11 @@ use tower_http::services::ServeDir;
 #[derive(Clone)]
 struct AppState<'a> {
     env: Environment<'a>,
-    game_states: Arc<HashMap<u32, Mutex<GameState>>>,
+    game_states: Arc<RwLock<HashMap<u32, GameState>>>,
 }
 
 #[derive(Clone)]
 struct GameState {
-    game_id: u32,
     current_hint: u32,
 }
 
@@ -33,11 +32,11 @@ struct Line {
 }
 
 #[derive(Deserialize)]
-struct CategoryRequest {
-    id: u32,
+struct GameRequest {
+    game_id: u32,
 }
 
-fn get_lines(u32: u64, hint_nr: u32) -> Vec<Line> {
+fn get_lines(game_id: u32, hint_nr: u32) -> Vec<Line> {
     let lines = vec![
         Line {
             category: "Peak rating".to_string(),
@@ -79,11 +78,22 @@ async fn introduction(State(state): State<Arc<RwLock<AppState<'_>>>>) -> Html<St
     }
 }
 
-async fn start_game(State(state): State<Arc<RwLock<AppState<'_>>>>) -> Html<String> {
-    let app_state = state.read().unwrap();
+async fn start_game(
+    State(state): State<Arc<RwLock<AppState<'_>>>>,
+    request: Query<GameRequest>,
+) -> Html<String> {
+    println!("Start game [game_id {}]", request.game_id);
+
+    let app_state = state.write().unwrap();
+    app_state
+        .game_states
+        .write()
+        .unwrap()
+        .insert(request.game_id, GameState { current_hint: 2 });
 
     let template = app_state.env.get_template("game").unwrap();
-    let rendered = template.render(context!(lines => get_lines(0, 1), start_screen => false));
+    let rendered =
+        template.render(context!(lines => get_lines(request.game_id, 1), start_screen => false));
 
     match rendered {
         Ok(result) => Html(result),
@@ -93,14 +103,25 @@ async fn start_game(State(state): State<Arc<RwLock<AppState<'_>>>>) -> Html<Stri
 
 async fn get_category(
     State(state): State<Arc<RwLock<AppState<'_>>>>,
-    request: Query<CategoryRequest>,
+    request: Query<GameRequest>,
 ) -> Html<String> {
-    // println!("request get_category with id {}", request.id);
+    println!("Request [game_id {}]", request.game_id);
 
     let app_state = state.read().unwrap();
+    let mut writer = app_state.game_states.write().unwrap();
+
+    let mut num_lines = 0;
+
+    match writer.get_mut(&request.game_id) {
+        Some(game_state) => {
+            num_lines = game_state.current_hint;
+            game_state.current_hint += 1;
+        }
+        None => return Html("".into()),
+    }
 
     let template = app_state.env.get_template("playarea").unwrap();
-    let rendered = template.render(context!(lines => get_lines(0, request.id)));
+    let rendered = template.render(context!(lines => get_lines(request.game_id, num_lines)));
 
     match rendered {
         Ok(result) => Html(result),
@@ -112,7 +133,7 @@ async fn get_category(
 async fn main() {
     let mut state = AppState {
         env: Environment::new(),
-        game_states: Arc::new(HashMap::new()),
+        game_states: Arc::new(RwLock::new(HashMap::new())),
     };
 
     state

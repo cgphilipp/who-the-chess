@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,10 +14,15 @@
   <link rel="stylesheet" href="/assets/game.css">
 
   <script>
-    var currentCategoryId = 2;
+    var currentGameId = 1337;
 
-    function getCategoryId() {
-      return currentCategoryId++;
+    function generateGameId() {
+      currentGameId = Math.floor(Math.random() * 16777215);
+      return currentGameId;
+    }
+
+    function getGameId() {
+      return currentGameId;
     }
   </script>
 </head>
@@ -31,9 +37,12 @@
 
       <div class="flexparentcol playarea">
         <div class="explanation">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         </div>
-        <button class="submit" hx-get="/start_game" hx-target="body" hx-swap="outerHTML">Play</button>
+        <button class="submit" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
+          hx-swap="outerHTML">Play</button>
       </div>
 
       {% else %}
@@ -42,14 +51,8 @@
 
       <!-- poll new categories -->
       <!-- todo: somehow remove the initial wait and only reload playarea, otherwise the edit will be overwritten-->
-      <div 
-          hx-get="/category" 
-          hx-trigger="every 7s"
-          hx-target=".playarea"
-          hx-swap="outerHTML"
-          hx-vals='js:{"id": getCategoryId()}'
-          style="display: none;"
-      >
+      <div hx-get="/category" hx-vals='js:{"game_id": getGameId()}' hx-trigger="every 7s" hx-target=".playarea"
+        hx-swap="outerHTML" style="display: none;">
       </div>
 
       {% endif %}
@@ -62,13 +65,13 @@
           <button class="submit">Submit</button>
         </div>
         {% endif %}
-  
+
         <div class="footer">
           © Philipp Otto 2023 - Created with
           <a href="https://www.rust-lang.org/">Rust</a>
-          and 
+          and
           <a href="https://htmx.org/">htmx</a>
-          ❤️ Hosted by 
+          ❤️ Hosted by
           <a href="https://fly.io/">fly.io</a>
           🚀
         </div>
@@ -77,4 +80,5 @@
     <div class="right-chessboard"></div>
   </div>
 </body>
+
 </html>
