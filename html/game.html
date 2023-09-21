@@ -65,20 +65,20 @@
 
         {% if not start_screen %}
         <div class="dummy" style="display: none;"></div>
-        <form class="flexparentrow editparent" hx-get="/answer" hx-target=".background" hx-target-418=".dummy"
-          hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
-          <input class="textedit" id="answerBox"></input>
+        <form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target=".background"
+          hx-target-418=".dummy" hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
+          <input class="textedit" id="answerBox" autocomplete="off" autofocus></input>
           <button type="submit" class="button">Submit</button>
         </form>
         {% endif %}
 
         <div class="footer">
           © Philipp Otto 2023 - Created with
-          <a href="https://www.rust-lang.org/">Rust</a>
+          <a href="https://www.rust-lang.org/" target=”_blank”>Rust</a>
           and
-          <a href="https://htmx.org/">htmx</a>
+          <a href="https://htmx.org/" target=”_blank”>htmx</a>
           ❤️ Hosted by
-          <a href="https://fly.io/">fly.io</a>
+          <a href="https://fly.io/" target=”_blank”>fly.io</a>
           🚀
         </div>
       </div>

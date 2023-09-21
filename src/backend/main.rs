@@ -33,6 +33,12 @@ struct Line {
     answer: String,
 }
 
+#[derive(Clone)]
+struct PlayerDisplay {
+    lines: Vec<Line>,
+    image: String,
+}
+
 #[derive(Deserialize)]
 struct GameRequest {
     game_id: u32,
@@ -57,7 +63,18 @@ struct PlayerInfo {
     images: HashSet<String>,
 }
 
-fn get_lines(player_infos: &HashMap<String, PlayerInfo>, game_id: u32, hint_nr: u32) -> Vec<Line> {
+fn get_answer(player_infos: &HashMap<String, PlayerInfo>, game_id: u32) -> String {
+    let player_id = game_id as usize % player_infos.len();
+    let (name, _) = player_infos.iter().nth(player_id).unwrap();
+
+    name.clone()
+}
+
+fn get_player_display(
+    player_infos: &HashMap<String, PlayerInfo>,
+    game_id: u32,
+    hint_nr: u32,
+) -> Option<PlayerDisplay> {
     let player_id = game_id as usize % player_infos.len();
     let (_, info) = player_infos.iter().nth(player_id).unwrap();
 
@@ -89,10 +106,22 @@ fn get_lines(player_infos: &HashMap<String, PlayerInfo>, game_id: u32, hint_nr: 
         },
     ];
 
+    if hint_nr as usize >= lines.len() + 2 {
+        return None;
+    }
+
+    let mut image = "".to_string();
+    if hint_nr as usize >= lines.len() + 1 {
+        image = info.images.iter().nth(0).unwrap_or(&"".to_string()).clone();
+    }
+
     let last_hint = std::cmp::min(hint_nr as usize, lines.len());
     let display_lines = &lines[0..last_hint];
 
-    display_lines.to_vec()
+    Some(PlayerDisplay {
+        lines: display_lines.to_vec(),
+        image: image,
+    })
 }
 
 async fn introduction(State(state): State<AppState<'_>>) -> Html<String> {
@@ -116,9 +145,11 @@ async fn start_game(
         game_states.insert(request.game_id, GameState { current_hint: 2 });
     }
 
+    let player_display = get_player_display(&state.player_infos, request.game_id, 1).unwrap();
+
     let template = state.env.get_template("game").unwrap();
     let rendered = template.render(
-        context!(lines => get_lines(&state.player_infos, request.game_id, 1), start_screen => false),
+        context!(lines => player_display.lines, start_screen => false, show_image => false),
     );
 
     match rendered {
@@ -127,10 +158,7 @@ async fn start_game(
     }
 }
 
-async fn get_category(
-    State(state): State<AppState<'_>>,
-    request: Query<GameRequest>,
-) -> Html<String> {
+async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequest>) -> Response {
     println!("Request [game_id {}]", request.game_id);
 
     let mut num_lines = 0;
@@ -142,17 +170,26 @@ async fn get_category(
                 num_lines = game_state.current_hint;
                 game_state.current_hint += 1;
             }
-            None => return Html("".into()),
+            None => {
+                return Html("").into_response();
+            }
         }
     }
 
+    let player_display = get_player_display(&state.player_infos, request.game_id, num_lines);
+    if player_display.is_none() {
+        return StatusCode::IM_A_TEAPOT.into_response();
+    }
+    let player_display = player_display.unwrap();
+
     let template = state.env.get_template("playarea").unwrap();
-    let rendered = template
-        .render(context!(lines => get_lines(&state.player_infos, request.game_id, num_lines)));
+    let rendered = template.render(
+        context!(lines => player_display.lines, show_image => !player_display.image.is_empty(), img_src => player_display.image),
+    );
 
     match rendered {
-        Ok(result) => Html(result),
-        Err(..) => Html("".into()),
+        Ok(result) => Html(result).into_response(),
+        Err(..) => Html("").into_response(),
     }
 }
 
@@ -162,13 +199,16 @@ async fn submit_answer(
 ) -> Response {
     println!("Answer [game_id {}]: {}", request.game_id, request.name);
 
-    if (request.name == "Carlsen") {
+    if (request.name.to_lowercase()
+        == get_answer(&state.player_infos, request.game_id).to_lowercase())
+    {
         let template = state.env.get_template("result").unwrap();
         let rendered = template.render(context!(success => true));
 
         return Html(rendered.unwrap()).into_response();
     }
 
+    // dummy code for wrong answer
     StatusCode::IM_A_TEAPOT.into_response()
 }
 

@@ -9,6 +9,10 @@
     </div>
     {% endfor %}
 
+    {% if show_image %}
+    <img src="{{ img_src }}" alt="Player" height="250">
+    {% endif %}
+
     <div class="progressbar-wrapper">
         <div class="progressbar"></div>
     </div>
