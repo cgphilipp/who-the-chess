@@ -19,7 +19,7 @@ use tower_http::services::ServeDir;
 struct AppState<'a> {
     env: Environment<'a>,
     game_states: Arc<RwLock<HashMap<u32, GameState>>>,
-    player_infos: Arc<RwLock<HashMap<String, PlayerInfo>>>,
+    player_infos: Arc<HashMap<String, PlayerInfo>>,
 }
 
 #[derive(Clone)]
@@ -116,11 +116,9 @@ async fn start_game(
         game_states.insert(request.game_id, GameState { current_hint: 2 });
     }
 
-    let player_infos = state.player_infos.read().unwrap();
-
     let template = state.env.get_template("game").unwrap();
     let rendered = template.render(
-        context!(lines => get_lines(&player_infos, request.game_id, 1), start_screen => false),
+        context!(lines => get_lines(&state.player_infos, request.game_id, 1), start_screen => false),
     );
 
     match rendered {
@@ -148,11 +146,9 @@ async fn get_category(
         }
     }
 
-    let player_infos = state.player_infos.read().unwrap();
-
     let template = state.env.get_template("playarea").unwrap();
-    let rendered =
-        template.render(context!(lines => get_lines(&player_infos, request.game_id, num_lines)));
+    let rendered = template
+        .render(context!(lines => get_lines(&state.player_infos, request.game_id, num_lines)));
 
     match rendered {
         Ok(result) => Html(result),
@@ -185,7 +181,7 @@ async fn main() {
     let mut state = AppState {
         env: Environment::new(),
         game_states: Arc::new(RwLock::new(HashMap::new())),
-        player_infos: Arc::new(RwLock::new(entries)),
+        player_infos: Arc::new(entries),
     };
 
     state
