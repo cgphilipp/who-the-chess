@@ -8,9 +8,9 @@ use axum::{
 use minijinja::{context, Environment};
 use serde::{Deserialize, Serialize};
 use std::{
-    collections::HashMap,
+    collections::{HashMap, HashSet},
     net::SocketAddr,
-    sync::{Arc, Mutex, RwLock},
+    sync::{Arc, RwLock},
 };
 use tower_http::services::ServeDir;
 
@@ -18,6 +18,7 @@ use tower_http::services::ServeDir;
 struct AppState<'a> {
     env: Environment<'a>,
     game_states: Arc<RwLock<HashMap<u32, GameState>>>,
+    player_infos: Arc<RwLock<HashMap<String, PlayerInfo>>>,
 }
 
 #[derive(Clone)]
@@ -36,27 +37,48 @@ struct GameRequest {
     game_id: u32,
 }
 
-fn get_lines(game_id: u32, hint_nr: u32) -> Vec<Line> {
+#[derive(Deserialize)]
+struct PlayerInfo {
+    birth_date: String,
+    birth_place: String,
+    year_of_gm: i32,
+    chess_com_name: HashSet<String>,
+    lichess_name: HashSet<String>,
+    peak_rating: u32,
+    sport_country: String,
+    citizenship_country: String,
+    images: HashSet<String>,
+}
+
+fn get_lines(player_infos: &HashMap<String, PlayerInfo>, game_id: u32, hint_nr: u32) -> Vec<Line> {
+    let player_id = game_id as usize % player_infos.len();
+    let (_, info) = player_infos.iter().nth(player_id).unwrap();
+
     let lines = vec![
         Line {
             category: "Peak rating".to_string(),
-            answer: "2882".to_string(),
+            answer: info.peak_rating.to_string(),
         },
         Line {
             category: "Birth date".to_string(),
-            answer: "30 November 1990".to_string(),
+            answer: info.birth_date.clone(),
         },
         Line {
-            category: "dasdsa".to_string(),
-            answer: "1".to_string(),
+            category: "Year of GM title".to_string(),
+            answer: info.year_of_gm.to_string(),
         },
         Line {
-            category: "asdasda".to_string(),
-            answer: "2".to_string(),
+            category: "Citizenship".to_string(),
+            answer: info.citizenship_country.clone(),
         },
         Line {
-            category: "asdasdas".to_string(),
-            answer: "3".to_string(),
+            category: "Chess.com username".to_string(),
+            answer: info
+                .chess_com_name
+                .iter()
+                .nth(0)
+                .unwrap_or(&"Unknown".to_string())
+                .clone(),
         },
     ];
 
@@ -66,10 +88,8 @@ fn get_lines(game_id: u32, hint_nr: u32) -> Vec<Line> {
     display_lines.to_vec()
 }
 
-async fn introduction(State(state): State<Arc<RwLock<AppState<'_>>>>) -> Html<String> {
-    let app_state = state.read().unwrap();
-
-    let template = app_state.env.get_template("game").unwrap();
+async fn introduction(State(state): State<AppState<'_>>) -> Html<String> {
+    let template = state.env.get_template("game").unwrap();
     let rendered = template.render(context!(start_screen => true));
 
     match rendered {
@@ -79,21 +99,22 @@ async fn introduction(State(state): State<Arc<RwLock<AppState<'_>>>>) -> Html<St
 }
 
 async fn start_game(
-    State(state): State<Arc<RwLock<AppState<'_>>>>,
+    State(state): State<AppState<'_>>,
     request: Query<GameRequest>,
 ) -> Html<String> {
     println!("Start game [game_id {}]", request.game_id);
 
-    let app_state = state.write().unwrap();
-    app_state
-        .game_states
-        .write()
-        .unwrap()
-        .insert(request.game_id, GameState { current_hint: 2 });
+    {
+        let mut game_states = state.game_states.write().unwrap();
+        game_states.insert(request.game_id, GameState { current_hint: 2 });
+    }
 
-    let template = app_state.env.get_template("game").unwrap();
-    let rendered =
-        template.render(context!(lines => get_lines(request.game_id, 1), start_screen => false));
+    let player_infos = state.player_infos.read().unwrap();
+
+    let template = state.env.get_template("game").unwrap();
+    let rendered = template.render(
+        context!(lines => get_lines(&player_infos, request.game_id, 1), start_screen => false),
+    );
 
     match rendered {
         Ok(result) => Html(result),
@@ -102,26 +123,29 @@ async fn start_game(
 }
 
 async fn get_category(
-    State(state): State<Arc<RwLock<AppState<'_>>>>,
+    State(state): State<AppState<'_>>,
     request: Query<GameRequest>,
 ) -> Html<String> {
     println!("Request [game_id {}]", request.game_id);
 
-    let app_state = state.read().unwrap();
-    let mut writer = app_state.game_states.write().unwrap();
-
     let mut num_lines = 0;
 
-    match writer.get_mut(&request.game_id) {
-        Some(game_state) => {
-            num_lines = game_state.current_hint;
-            game_state.current_hint += 1;
+    {
+        let mut game_states = state.game_states.write().unwrap();
+        match game_states.get_mut(&request.game_id) {
+            Some(game_state) => {
+                num_lines = game_state.current_hint;
+                game_state.current_hint += 1;
+            }
+            None => return Html("".into()),
         }
-        None => return Html("".into()),
     }
 
-    let template = app_state.env.get_template("playarea").unwrap();
-    let rendered = template.render(context!(lines => get_lines(request.game_id, num_lines)));
+    let player_infos = state.player_infos.read().unwrap();
+
+    let template = state.env.get_template("playarea").unwrap();
+    let rendered =
+        template.render(context!(lines => get_lines(&player_infos, request.game_id, num_lines)));
 
     match rendered {
         Ok(result) => Html(result),
@@ -131,9 +155,14 @@ async fn get_category(
 
 #[tokio::main]
 async fn main() {
+    let entries: HashMap<String, PlayerInfo> =
+        serde_json::from_str(include_str!("../../resources/player-data.json"))
+            .expect("JSON was not well-formatted");
+
     let mut state = AppState {
         env: Environment::new(),
         game_states: Arc::new(RwLock::new(HashMap::new())),
+        player_infos: Arc::new(RwLock::new(entries)),
     };
 
     state
@@ -145,14 +174,12 @@ async fn main() {
         .add_template("playarea", include_str!("../../html/playarea.html"))
         .expect("Could not load a template!");
 
-    let shared_state = Arc::new(RwLock::new(state));
-
     let app = Router::new()
         .route("/", get(introduction))
         .route("/category", get(get_category))
         .route("/start_game", get(start_game))
         .nest_service("/assets", ServeDir::new("assets"))
-        .with_state(shared_state);
+        .with_state(state);
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Listening on {}...", addr);
