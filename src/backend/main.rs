@@ -1,7 +1,8 @@
 use axum::{
     extract::Query,
     extract::State,
-    response::Html,
+    http::StatusCode,
+    response::{Html, IntoResponse, Response},
     routing::{get, post},
     Router,
 };
@@ -35,6 +36,12 @@ struct Line {
 #[derive(Deserialize)]
 struct GameRequest {
     game_id: u32,
+}
+
+#[derive(Deserialize)]
+struct AnswerRequest {
+    game_id: u32,
+    name: String,
 }
 
 #[derive(Deserialize)]
@@ -153,6 +160,22 @@ async fn get_category(
     }
 }
 
+async fn submit_answer(
+    State(state): State<AppState<'_>>,
+    request: Query<AnswerRequest>,
+) -> Response {
+    println!("Answer [game_id {}]: {}", request.game_id, request.name);
+
+    if (request.name == "Carlsen") {
+        let template = state.env.get_template("result").unwrap();
+        let rendered = template.render(context!(success => true));
+
+        return Html(rendered.unwrap()).into_response();
+    }
+
+    StatusCode::IM_A_TEAPOT.into_response()
+}
+
 #[tokio::main]
 async fn main() {
     let entries: HashMap<String, PlayerInfo> =
@@ -173,11 +196,16 @@ async fn main() {
         .env
         .add_template("playarea", include_str!("../../html/playarea.html"))
         .expect("Could not load a template!");
+    state
+        .env
+        .add_template("result", include_str!("../../html/result.html"))
+        .expect("Could not load a template!");
 
     let app = Router::new()
         .route("/", get(introduction))
-        .route("/category", get(get_category))
         .route("/start_game", get(start_game))
+        .route("/category", get(get_category))
+        .route("/answer", get(submit_answer))
         .nest_service("/assets", ServeDir::new("assets"))
         .with_state(state);
 

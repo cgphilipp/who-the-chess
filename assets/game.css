@@ -1,0 +1,223 @@
+@font-face {
+    font-family: Encode;
+    src: url(/assets/EncodeSansSemiExpanded-Regular.ttf);
+}
+
+body {
+    margin: 0px;
+    overflow: hidden;
+
+    font-family: Encode;
+    font-style: normal;
+}
+
+h1 {
+    color: #4E6A73;
+    font-size: 5rem;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+a {
+    color: #adadad;
+}
+
+.flexparentrow {
+    display: inline-flex;
+    flex-direction: row
+}
+
+.flexparentcol {
+    display: inline-flex;
+    flex-direction: column
+}
+
+.container {
+    align-items: center;
+    gap: 0rem;
+    height: 100vh;
+    width: 100vw;
+}
+
+.left-chessboard {
+    background: linear-gradient(270deg, #000 -32.56%, #9C9C9C 18.75%, #FFF 99.73%), url("/assets/checkerboard.png");
+    background-blend-mode: screen, multiply, normal;
+
+    display: flex;
+
+    height: 100vh;
+    width: 20vw;
+    min-width: 0px;
+
+    padding: 0rem 0rem;
+}
+
+.right-chessboard {
+    background: linear-gradient(91deg, #000 -43.76%, #9C9C9C 11.75%, #FFF 99.36%), url("/assets/checkerboard.png");
+    background-blend-mode: screen, multiply, normal;
+
+    display: flex;
+
+    height: 100vh;
+    width: 20vw;
+    min-width: 0px;
+
+    padding: 0rem 0rem;
+}
+
+.background {
+    background: linear-gradient(90deg, rgba(47, 72, 88, 0.10) 0.36%, rgba(247, 251, 243, 0.10) 37.06%, rgba(247, 251, 243, 0.10) 69.62%, rgba(47, 72, 88, 0.10) 99.6%), #F7FBF3;
+
+    display: flex;
+
+    height: 100vh;
+    width: 60vw;
+    min-width: 375px;
+
+    padding: 0rem 0rem;
+
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.explanation {
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 2rem;
+}
+
+.playarea {
+    align-items: center;
+    gap: 1.3125rem;
+    position: relative;
+}
+
+.progressbar-wrapper {
+    background: #FFFFFF00;
+    height: 1rem;
+    width: 95%;
+    border: 1px #2F4858;
+    border-radius: 2.5rem;
+    border-style: solid;
+    margin: 2.5%;
+}
+
+.progressbar {
+    background: #64A038;
+    width: 30%;
+    height: 1rem;
+    border-radius: 2.5rem;
+
+    animation: progressBar 6.7s ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes progressBar {
+    0% {
+        width: 0;
+        background: #64A038;
+    }
+
+    100% {
+        width: 100%;
+        background: #be7c25;
+    }
+}
+
+.playline {
+    background: #F7F9F5;
+    border-radius: 0.5rem;
+
+    width: 100%;
+    height: 3rem;
+
+    display: flex;
+    position: relative;
+
+    align-items: center;
+    justify-content: space-between;
+
+    color: #2F4858;
+    font-size: 2.25rem;
+}
+
+.category {
+    margin: 1rem;
+    font-weight: 600;
+}
+
+.answer {
+    margin: 1rem;
+    font-weight: 400;
+}
+
+.divider {
+    position: absolute;
+    left: 50%;
+
+    width: 0.3125rem;
+    height: 100%;
+    background: #005AA1;
+}
+
+.success {
+    color: #64A038;
+}
+
+.editparent {
+    align-items: center;
+    justify-content: space-evenly;
+
+    gap: 0.5rem;
+    margin: 1rem;
+}
+
+.textedit {
+    width: 75%;
+    height: 4rem;
+
+    border-radius: 1.75rem;
+    border: 1px solid #4E6A74;
+    background: #FAFAFA;
+
+    font-family: Encode;
+    font-style: normal;
+    color: #2F4858;
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+
+.button {
+    width: 25%;
+    min-width: 10rem;
+    height: 4rem;
+
+    flex-shrink: 0;
+    border-radius: 1.75rem;
+    background: #2F4858;
+
+    font-family: Encode;
+    font-style: normal;
+    color: #FFF;
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+
+.footer {
+    background: #2F4858;
+
+    bottom: 0px;
+    height: 1.2rem;
+    width: 100%;
+
+    font-family: Encode;
+    font-style: normal;
+    text-align: center;
+    color: #c5c5c5;
+    font-size: 0.8rem;
+    font-weight: 300;
+}

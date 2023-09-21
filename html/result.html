@@ -1,0 +1,14 @@
+<div class="flexparentcol playarea">
+
+    {% if success %}
+    <h1 class=".success">Success</h1>
+    {% else %}
+    <h1 class=".fail">Too slow</h1>
+    {% endif %}
+
+    <!-- TODO insert player stats here -->
+
+    <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
+        hx-swap="outerHTML">Play again</button>
+
+</div>

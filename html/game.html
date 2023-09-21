@@ -11,6 +11,7 @@
   <meta name="author" content="Philipp Otto">
 
   <script src="/assets/htmx.min.js"></script>
+  <script src="/assets/htmx-response-targets.js"></script>
   <link rel="stylesheet" href="/assets/game.css">
 
   <script>
@@ -24,6 +25,14 @@
     function getGameId() {
       return currentGameId;
     }
+
+    function getCurrentName() {
+      var submitElement = document.getElementById("answerBox");
+      if (!submitElement) {
+        return "";
+      }
+      return submitElement.value;
+    }
   </script>
 </head>
 
@@ -32,16 +41,16 @@
     <div class="left-chessboard"></div>
     <div class="background">
       <h1>Who's that SuperGM?</h1>
-
       {% if start_screen %}
 
       <div class="flexparentcol playarea">
         <div class="explanation">
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          <p>Every few seconds, you will get additional information about a 2700+ chess player.
+            Try to find out who it is as fast as you can.</p>
+          <p>♟️ ♟️ ♟️</p>
+          <p>Good luck and have fun! </p>
         </div>
-        <button class="submit" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
+        <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
           hx-swap="outerHTML">Play</button>
       </div>
 
@@ -49,21 +58,17 @@
 
       {% include 'playarea' %}
 
-      <!-- poll new categories -->
-      <!-- todo: somehow remove the initial wait and only reload playarea, otherwise the edit will be overwritten-->
-      <div hx-get="/category" hx-vals='js:{"game_id": getGameId()}' hx-trigger="every 7s" hx-target=".playarea"
-        hx-swap="outerHTML" style="display: none;">
-      </div>
-
       {% endif %}
 
       <div class="flexparentcol bottom">
 
         {% if not start_screen %}
-        <div class="flexparentrow editparent">
-          <input class="textedit"></input>
-          <button class="submit">Submit</button>
-        </div>
+        <div class="dummy" style="display: none;"></div>
+        <form class="flexparentrow editparent" hx-get="/answer" hx-target=".background" hx-target-418=".dummy"
+          hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
+          <input class="textedit" id="answerBox"></input>
+          <button type="submit" class="button">Submit</button>
+        </form>
         {% endif %}
 
         <div class="footer">
