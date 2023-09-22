@@ -33,6 +33,24 @@
       }
       return submitElement.value;
     }
+
+    function copyPrediction() {
+      var submitElement = document.getElementById("answerBox");
+      var predictionElement = document.getElementById("predictionBox");
+      if (submitElement && predictionElement) {
+        submitElement.value = predictionElement.innerHTML;
+      }
+    }
+
+    htmx.on("keydown", function (evt) {
+      console.log(evt);
+
+      if (evt.key === 'Tab') {
+        copyPrediction();
+        evt.preventDefault();
+        evt.stopPropagation();
+      }
+    });
   </script>
 </head>
 
@@ -66,16 +84,14 @@
         {% if not start_screen %}
         <div class="dummy" style="display: none;"></div>
 
-        <div class="prediction textedit"></div>
+        {% include 'prediction' %}
 
         <form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target=".background"
           hx-target-418=".dummy" hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
 
-          <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus></input>
-
-          <!-- trigger autocomplete periodically -->
-          <div style="display: none;" hx-get="/prediction" hx-target=".prediction" hx-trigger="every 0.7s"
-            hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'></div>
+          <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus hx-get="/prediction"
+            hx-target=".prediction" hx-trigger="input delay:0.1s" hx-swap="outerHTML"
+            hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'></input>
 
           <button type="submit" class="button">Submit</button>
 

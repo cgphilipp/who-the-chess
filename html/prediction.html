@@ -1,0 +1,5 @@
+{% if show_prediction %}
+<div class="prediction textedit" id="predictionBox" hx-on:click="copyPrediction()">{{ prediction }}</div>
+{% else %}
+<div class="prediction textedit" id="predictionBox" style="display: none;"></div>
+{% endif %}

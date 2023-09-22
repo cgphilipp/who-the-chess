@@ -196,14 +196,17 @@ async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequ
 async fn get_prediction(
     State(state): State<AppState<'_>>,
     request: Query<AnswerRequest>,
-) -> Response {
+) -> Html<String> {
     println!(
         "Get prediction [game_id {}]: {}",
         request.game_id, request.name
     );
 
+    let template = state.env.get_template("prediction").unwrap();
+
     if request.name.len() < 3 {
-        return StatusCode::IM_A_TEAPOT.into_response();
+        let html = template.render(context!(show_prediction => false));
+        return Html(html.unwrap_or("".to_string()));
     }
 
     let requested_name = request.name.to_lowercase();
@@ -212,12 +215,16 @@ async fn get_prediction(
         let parts = name.split(" ");
         for part in parts {
             if part.to_lowercase().starts_with(requested_name.as_str()) {
-                return Html(name.clone()).into_response();
+                let html = template
+                    .render(context!(show_prediction => true, prediction => name))
+                    .unwrap_or("".to_string());
+                return Html(html);
             }
         }
     }
 
-    StatusCode::IM_A_TEAPOT.into_response()
+    let html = template.render(context!(show_prediction => false));
+    return Html(html.unwrap_or("".to_string()));
 }
 
 async fn submit_answer(
@@ -262,6 +269,10 @@ async fn main() {
     state
         .env
         .add_template("result", include_str!("../../html/result.html"))
+        .expect("Could not load a template!");
+    state
+        .env
+        .add_template("prediction", include_str!("../../html/prediction.html"))
         .expect("Could not load a template!");
 
     let app = Router::new()
