@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Who's that SuperGM?</title>
+  <title>Who's this SuperGM?</title>
   <meta name="description" content="Guess the SuperGM.">
   <meta name="author" content="Philipp Otto">
 
@@ -39,6 +39,11 @@
       var predictionElement = document.getElementById("predictionBox");
       if (submitElement && predictionElement) {
         submitElement.value = predictionElement.value;
+
+        var prediction = document.getElementById("prediction");
+        if (prediction) {
+          prediction.style.display = "none";
+        }
       }
     }
 
@@ -61,7 +66,7 @@
       {% if start_screen %}
 
       <div class="flexparentcol playarea">
-        <h1>Who's that SuperGM?</h1>
+        <h1>Who's this SuperGM?</h1>
 
         <div class="explanation">
           <p>Every few seconds, you will get additional information about a 2700+ chess player.

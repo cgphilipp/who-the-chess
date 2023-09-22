@@ -49,6 +49,7 @@ a {
     height: 100vh;
     width: 20vw;
     min-width: 0px;
+    max-width: 300px;
 
     padding: 0rem 0rem;
 }
@@ -62,6 +63,7 @@ a {
     height: 100vh;
     width: 20vw;
     min-width: 0px;
+    max-width: 300px;
 
     padding: 0rem 0rem;
 }
@@ -72,13 +74,23 @@ a {
     display: flex;
 
     height: 100vh;
-    width: 60vw;
-    min-width: 375px;
+    width: 100%;
+    /* min-width: 375px; */
 
     padding: 0rem 0rem;
 
     flex-direction: column;
     justify-content: space-between;
+}
+
+@media only screen and (max-width: 1200px) {
+    .left-chessboard {
+        display: none;
+    }
+
+    .right-chessboard {
+        display: none;
+    }
 }
 
 .explanation {
@@ -197,7 +209,6 @@ a {
 .tabhint {
     width: 25%;
     color: #4E6A74;
-    border: 1rem;
 }
 
 .button {
