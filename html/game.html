@@ -38,7 +38,7 @@
       var submitElement = document.getElementById("answerBox");
       var predictionElement = document.getElementById("predictionBox");
       if (submitElement && predictionElement) {
-        submitElement.value = predictionElement.innerHTML;
+        submitElement.value = predictionElement.value;
       }
     }
 
@@ -90,7 +90,7 @@
           hx-target-418=".dummy" hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
 
           <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus hx-get="/prediction"
-            hx-target=".prediction" hx-trigger="input delay:0.1s" hx-swap="outerHTML"
+            hx-target="#prediction" hx-trigger="input delay:0.1s" hx-swap="outerHTML"
             hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'></input>
 
           <button type="submit" class="button">Submit</button>

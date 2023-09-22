@@ -1,5 +1,9 @@
 {% if show_prediction %}
-<div class="prediction textedit" id="predictionBox" hx-on:click="copyPrediction()">{{ prediction }}</div>
+<div class="flexparentrow editparent" id="prediction">
+    <input type="text" class="textedit" id="predictionBox" value="{{ prediction }}" hx-on:click="copyPrediction()">
+    </input>
+    <div class="tabhint">↹ to complete</div>
+</div>
 {% else %}
-<div class="prediction textedit" id="predictionBox" style="display: none;"></div>
+<div id="prediction" style="display: none;"></div>
 {% endif %}
