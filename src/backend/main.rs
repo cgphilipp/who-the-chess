@@ -193,6 +193,33 @@ async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequ
     }
 }
 
+async fn get_prediction(
+    State(state): State<AppState<'_>>,
+    request: Query<AnswerRequest>,
+) -> Response {
+    println!(
+        "Get prediction [game_id {}]: {}",
+        request.game_id, request.name
+    );
+
+    if request.name.len() < 3 {
+        return StatusCode::IM_A_TEAPOT.into_response();
+    }
+
+    let requested_name = request.name.to_lowercase();
+
+    for (name, _) in state.player_infos.iter() {
+        let parts = name.split(" ");
+        for part in parts {
+            if part.to_lowercase().starts_with(requested_name.as_str()) {
+                return Html(name.clone()).into_response();
+            }
+        }
+    }
+
+    StatusCode::IM_A_TEAPOT.into_response()
+}
+
 async fn submit_answer(
     State(state): State<AppState<'_>>,
     request: Query<AnswerRequest>,
@@ -242,6 +269,7 @@ async fn main() {
         .route("/start_game", get(start_game))
         .route("/category", get(get_category))
         .route("/answer", get(submit_answer))
+        .route("/prediction", get(get_prediction))
         .nest_service("/assets", ServeDir::new("assets"))
         .with_state(state);
 

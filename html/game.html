@@ -65,10 +65,20 @@
 
         {% if not start_screen %}
         <div class="dummy" style="display: none;"></div>
+
+        <div class="prediction textedit"></div>
+
         <form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target=".background"
           hx-target-418=".dummy" hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
-          <input class="textedit" id="answerBox" autocomplete="off" autofocus></input>
+
+          <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus></input>
+
+          <!-- trigger autocomplete periodically -->
+          <div style="display: none;" hx-get="/prediction" hx-target=".prediction" hx-trigger="every 0.7s"
+            hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'></div>
+
           <button type="submit" class="button">Submit</button>
+
         </form>
         {% endif %}
 
