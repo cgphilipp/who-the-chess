@@ -18,8 +18,9 @@
     </div>
 
     <!-- poll new categories -->
-    <div hx-get="/category" hx-vals='js:{"game_id": getGameId()}' hx-trigger="load once delay:7s" hx-target=".playarea"
-        hx-target-418=".background" hx-swap="outerHTML" style="display: none;">
+    <div hx-get="/category" hx-vals='js:{"game_id": getGameId(), "hint_id": getHintId()}'
+        hx-trigger="load once delay:7s" hx-target=".playarea" hx-target-418=".background" hx-swap="outerHTML"
+        style="display: none;">
     </div>
 
 </div>

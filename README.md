@@ -8,6 +8,8 @@ Tech stack:
 
 ## Deployment
 
+If you are on Windows, first prepare for cross-compilation to Linux x86: https://github.com/KodrAus/rust-cross-compile
+
 1. Build a release target for x86_64-unknown-linux-musl: `cargo build --target x86_64-unknown-linux-musl --release`
 2. Run `fly launch`
 
@@ -15,3 +17,4 @@ Tech stack:
 
 - Design results page
 - Implement variable sizing based on document size, test on mobile devices
+- Preload images

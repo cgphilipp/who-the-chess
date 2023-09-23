@@ -6,13 +6,16 @@
         <img src="{{ result.player.image }}" alt="Player" height="250">
 
         {% if result.success %}
-        <div class="timer">You found the correct answer in <b>{{ result.time }}</b> seconds!</div>
+        <!-- TODO reenable timing when implementing database access -->
+        <!-- <div class="timer">You found the correct answer in <b>{{ result.time }}</b> seconds!</div> -->
+
+        <div class="result-success">You found the correct answer!</div>
         {% else %}
-        <div class="timer">You did not find the answer in time.</div>
+        <div class="result-fail">You did not find the answer in time.</div>
         {% endif %}
 
-        <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
-            hx-swap="outerHTML">Play again</button>
+        <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
+            hx-target="body" hx-swap="outerHTML">Play again</button>
 
         {% for line in result.player.lines %}
         <div class="flexparentrow playline">

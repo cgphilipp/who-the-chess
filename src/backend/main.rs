@@ -12,21 +12,36 @@ use serde::{Deserialize, Serialize};
 use std::{
     collections::{HashMap, HashSet},
     net::{IpAddr, Ipv6Addr, SocketAddr},
-    sync::{Arc, RwLock},
-    time::{Duration, SystemTime},
+    sync::Arc,
+    time::Instant,
 };
+
+pub struct Timer {
+    name: String,
+    start: Instant,
+}
+
+impl Timer {
+    pub fn new(name: String) -> Timer {
+        Timer {
+            name,
+            start: Instant::now(),
+        }
+    }
+}
+
+impl Drop for Timer {
+    fn drop(&mut self) {
+        let duration = Instant::now().duration_since(self.start);
+        let millis = duration.as_micros() as f64 / 1000.0;
+        println!("{} | {}ms ", self.name, millis);
+    }
+}
 
 #[derive(Clone)]
 struct AppState<'a> {
     env: Environment<'a>,
-    game_states: Arc<RwLock<HashMap<u32, GameState>>>,
     player_infos: Arc<HashMap<String, PlayerInfo>>,
-}
-
-#[derive(Clone)]
-struct GameState {
-    current_hint: u32,
-    start_time: SystemTime,
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -52,6 +67,7 @@ struct GameResultDisplay {
 #[derive(Deserialize)]
 struct GameRequest {
     game_id: u32,
+    hint_id: u32,
 }
 
 #[derive(Deserialize)]
@@ -138,6 +154,8 @@ fn get_player_display(
 }
 
 async fn introduction(State(state): State<AppState<'_>>) -> Html<String> {
+    let _timer = Timer::new("Intro".to_string());
+
     let template = state.env.get_template("game").unwrap();
     let rendered = template.render(context!(start_screen => true));
 
@@ -151,20 +169,10 @@ async fn start_game(
     State(state): State<AppState<'_>>,
     request: Query<GameRequest>,
 ) -> Html<String> {
-    println!("Start game [game_id {}]", request.game_id);
+    let _timer = Timer::new(format!("Start game [game_id {}]", request.game_id));
 
-    {
-        let mut game_states = state.game_states.write().unwrap();
-        game_states.insert(
-            request.game_id,
-            GameState {
-                current_hint: 2,
-                start_time: SystemTime::now(),
-            },
-        );
-    }
-
-    let player_display = get_player_display(&state.player_infos, request.game_id, 1).unwrap();
+    let player_display =
+        get_player_display(&state.player_infos, request.game_id, request.hint_id).unwrap();
 
     let template = state.env.get_template("game").unwrap();
     let rendered = template.render(
@@ -178,24 +186,9 @@ async fn start_game(
 }
 
 async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequest>) -> Response {
-    println!("Request [game_id {}]", request.game_id);
+    let _timer = Timer::new(format!("Request [game_id {}]", request.game_id));
 
-    let mut num_lines = 0;
-
-    {
-        let mut game_states = state.game_states.write().unwrap();
-        match game_states.get_mut(&request.game_id) {
-            Some(game_state) => {
-                num_lines = game_state.current_hint;
-                game_state.current_hint += 1;
-            }
-            None => {
-                return Html("").into_response();
-            }
-        }
-    }
-
-    let player_display = get_player_display(&state.player_infos, request.game_id, num_lines);
+    let player_display = get_player_display(&state.player_infos, request.game_id, request.hint_id);
 
     if player_display.is_none() {
         let player_display = get_player_display(&state.player_infos, request.game_id, MAX_HINT)
@@ -237,10 +230,10 @@ async fn get_prediction(
     State(state): State<AppState<'_>>,
     request: Query<AnswerRequest>,
 ) -> Html<String> {
-    println!(
+    let _timer = Timer::new(format!(
         "Get prediction [game_id {}]: {}",
         request.game_id, request.name
-    );
+    ));
 
     let template = state.env.get_template("prediction").unwrap();
 
@@ -271,41 +264,42 @@ async fn submit_answer(
     State(state): State<AppState<'_>>,
     request: Query<AnswerRequest>,
 ) -> Response {
-    println!("Answer [game_id {}]: {}", request.game_id, request.name);
+    let _timer = Timer::new(format!(
+        "Answer [game_id {}]: {}",
+        request.game_id, request.name
+    ));
 
     if (request.name.to_lowercase()
         == get_answer(&state.player_infos, request.game_id).to_lowercase())
     {
-        let game_states = state.game_states.read().unwrap();
-        if let Some(game_state) = game_states.get(&request.game_id) {
-            let duration = SystemTime::now()
-                .duration_since(game_state.start_time)
-                .unwrap_or(Duration::new(0, 0));
-            let micros_str = duration.as_micros().to_string();
-            let duration_str = if micros_str.len() >= 4 {
-                micros_str[0..2].to_string() + "." + micros_str[2..4].as_ref()
-            } else {
-                duration.as_secs().to_string()
-            };
+        // TODO reimplement duration counting with database access
+        // let duration = SystemTime::now()
+        //     .duration_since(game_state.start_time)
+        //     .unwrap_or(Duration::new(0, 0));
+        // let micros_str = duration.as_micros().to_string();
+        // let duration_str = if micros_str.len() >= 4 {
+        //     micros_str[0..2].to_string() + "." + micros_str[2..4].as_ref()
+        // } else {
+        //     duration.as_secs().to_string()
+        // };
 
-            let player_display = get_player_display(&state.player_infos, request.game_id, MAX_HINT)
-                .unwrap_or(PlayerDisplay {
-                    name: "".to_string(),
-                    lines: vec![],
-                    image: "".to_string(),
-                });
+        let player_display = get_player_display(&state.player_infos, request.game_id, MAX_HINT)
+            .unwrap_or(PlayerDisplay {
+                name: "".to_string(),
+                lines: vec![],
+                image: "".to_string(),
+            });
 
-            let result = GameResultDisplay {
-                success: true,
-                time: duration_str,
-                player: player_display,
-            };
+        let result = GameResultDisplay {
+            success: true,
+            time: "".to_string(),
+            player: player_display,
+        };
 
-            let template = state.env.get_template("result").unwrap();
-            let rendered = template.render(context!(result => result));
+        let template = state.env.get_template("result").unwrap();
+        let rendered = template.render(context!(result => result));
 
-            return Html(rendered.unwrap()).into_response();
-        }
+        return Html(rendered.unwrap()).into_response();
     }
 
     // dummy code for wrong answer
@@ -314,7 +308,7 @@ async fn submit_answer(
 
 static STATIC_DIR: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/assets");
 async fn assets(Path(path): Path<String>) -> Response {
-    println!("Asset req [path {}]", path);
+    let _timer = Timer::new(format!("Asset req [path {}]", path));
 
     let path = path.trim_start_matches('/');
     let mime_type = mime_guess::from_path(path).first_or_text_plain();
@@ -361,7 +355,6 @@ async fn main() {
 
     let state = AppState {
         env,
-        game_states: Arc::new(RwLock::new(HashMap::new())),
         player_infos: Arc::new(entries),
     };
 

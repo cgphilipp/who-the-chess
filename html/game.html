@@ -16,9 +16,11 @@
 
   <script>
     var currentGameId = 1337;
+    var currentHintId = 0;
 
     function generateGameId() {
       currentGameId = Math.floor(Math.random() * 16777215);
+      currentHintId = 0;
       return currentGameId;
     }
 
@@ -26,7 +28,11 @@
       return currentGameId;
     }
 
-    function getCurrentName() {
+    function getHintId() {
+      return ++currentHintId;
+    }
+
+    function getCurrentAnswer() {
       var submitElement = document.getElementById("answerBox");
       if (!submitElement) {
         return "";
@@ -72,8 +78,8 @@
           <p>♟️ ♟️ ♟️</p>
           <p>Good luck and have fun! </p>
         </div>
-        <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
-          hx-swap="outerHTML">Play</button>
+        <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
+          hx-target="body" hx-swap="outerHTML">Play</button>
       </div>
 
       {% else %}
@@ -90,11 +96,11 @@
         {% include 'prediction' %}
 
         <form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target=".background"
-          hx-target-418=".dummy" hx-swap="outerHTML" hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
+          hx-target-418=".dummy" hx-swap="outerHTML" hx-vals='js:{"game_id": getGameId(), "name": getCurrentAnswer()}'>
 
           <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus hx-get="/prediction"
             hx-target="#prediction" hx-trigger="input delay:0.1s" hx-swap="outerHTML"
-            hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'></input>
+            hx-vals='js:{"game_id": getGameId(), "name": getCurrentAnswer()}'></input>
 
           <button type="submit" class="button">Submit</button>
 
