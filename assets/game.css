@@ -199,13 +199,13 @@ a {
 
 @keyframes progressBar {
     0% {
-        width: 0;
+        width: 0%;
         background: #64A038;
     }
 
     100% {
         width: 100%;
-        background: #be7c25;
+        background: #E49B59;
     }
 }
 
@@ -251,7 +251,7 @@ a {
 
 @keyframes flashRed {
     0% {
-        background: #E49B59
+        background: #E49B59;
     }
 
     100% {
