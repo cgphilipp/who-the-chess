@@ -1,14 +1,28 @@
-<div class="flexparentcol playarea">
+<div class="background">
 
-    {% if success %}
-    <h1 class=".success">Success</h1>
-    {% else %}
-    <h1 class=".fail">Too slow</h1>
-    {% endif %}
+    <div class="flexparentcol playarea">
 
-    <!-- TODO insert player stats here -->
+        <h1 class=".success">{{ result.player.name }}</h1>
 
-    <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
-        hx-swap="outerHTML">Play again</button>
+        {% if result.success %}
+        <div class="timer">You found the correct answer in <b>{{ result.time }}</b> seconds!</div>
+        {% else %}
+        <div class="timer">You did not find the answer in time.</div>
+        {% endif %}
+
+        <img src="{{ result.player.image }}" alt="Player" height="250">
+
+        <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId()}' hx-target="body"
+            hx-swap="outerHTML">Play again</button>
+
+        {% for line in result.player.lines %}
+        <div class="flexparentrow playline">
+            <div class="category">{{ line.category }}</div>
+            <div class="divider"></div>
+            <div class="answer">{{ line.answer }}</div>
+        </div>
+        {% endfor %}
+
+    </div>
 
 </div>

@@ -9,8 +9,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2763,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/WangHao13a.jpg"
         ]
@@ -198,8 +198,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2703,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/SamuelSevian19.jpg"
         ]
@@ -327,8 +327,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2724,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Ni%20hua%2020081119%20olympiade%20dresden.jpg",
             "http://commons.wikimedia.org/wiki/Special:FilePath/Ni%20Hua-Reggio2009.jpg"
@@ -392,8 +392,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2704,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/RRobson10.jpg"
         ]
@@ -407,8 +407,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2753,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/WeiYi17a.jpg"
         ]
@@ -526,8 +526,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2765,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Yu%20Yangyi%20Tata%20Steel%20Chess%202020.jpg"
         ]
@@ -787,8 +787,8 @@
             "HansMoke"
         ],
         "peak_rating": 2708,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Hans%20Niemann%202019-crop.jpg"
         ]
@@ -1004,8 +1004,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2756,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Wang%20Yue%20%28chess%29.jpg"
         ]
@@ -1037,7 +1037,7 @@
         "lichess_name": [],
         "peak_rating": 2701,
         "sport_country": "Soviet Union",
-        "citizenship_country": "United States of America",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Onischuk%20Alexander.jpg"
         ]
@@ -1068,8 +1068,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2712,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/TataSteelChess2017-67.jpg"
         ]
@@ -1229,8 +1229,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2731,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Bu%20Xiangzhi%20Mtel%20Masters.jpg"
         ]
@@ -1296,8 +1296,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2731,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Shankland%20Samuel%20%2830085388441%29.jpg"
         ]
@@ -1324,8 +1324,8 @@
         "chess_com_name": [],
         "lichess_name": [],
         "peak_rating": 2785,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Bobby%20Fischer%201972%20%28cropped%29.jpg",
             "http://commons.wikimedia.org/wiki/Special:FilePath/Bobby%20Fischer%201960%20in%20Leipzig%20in%20color.jpg"
@@ -1395,8 +1395,8 @@
             "TSMFTXH"
         ],
         "peak_rating": 2816,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Hikaru%20Nakamura%20%282016%29%20crop.jpg"
         ]
@@ -1411,7 +1411,7 @@
         "lichess_name": [],
         "peak_rating": 2844,
         "sport_country": "Italy",
-        "citizenship_country": "United States of America",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Fabiano%20Caruana%202%2C%20Candidates%20Tournament%202018.jpg"
         ]
@@ -1431,15 +1431,15 @@
     },
     "Ding Liren": {
         "birth_date": "24.10.1992",
-        "birth_place": "Wenzhou, People's Republic of China",
+        "birth_place": "Wenzhou, China",
         "year_of_gm": 2009,
         "chess_com_name": [
             "Chefshouse"
         ],
         "lichess_name": [],
         "peak_rating": 2816,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Ding%20Liren%20in%202023%20%28cropped%29.jpg"
         ]
@@ -1470,8 +1470,8 @@
         ],
         "lichess_name": [],
         "peak_rating": 2758,
-        "sport_country": "People's Republic of China",
-        "citizenship_country": "People's Republic of China",
+        "sport_country": "China",
+        "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Li%20Chao%202015%20Deizisau.JPG"
         ]
@@ -1496,8 +1496,8 @@
         "chess_com_name": [],
         "lichess_name": [],
         "peak_rating": 2826,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Wilhelm%20Steinitz2.jpg",
             "http://commons.wikimedia.org/wiki/Special:FilePath/Wilhelm%20Steinitz.jpg"
@@ -1644,7 +1644,7 @@
             "LazaroBruzon"
         ],
         "peak_rating": 2717,
-        "sport_country": "United States of America",
+        "sport_country": "USA",
         "citizenship_country": "Cuba",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/LazaroBruzon12.jpg"
@@ -1774,7 +1774,7 @@
         ],
         "peak_rating": 2710,
         "sport_country": "Romania",
-        "citizenship_country": "",
+        "citizenship_country": "Romania",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/2022-Bogdan-Daniel-Deac.JPG"
         ]
@@ -1912,8 +1912,8 @@
             "IGMGataKamsky"
         ],
         "peak_rating": 2763,
-        "sport_country": "United States of America",
-        "citizenship_country": "United States of America",
+        "sport_country": "USA",
+        "citizenship_country": "USA",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/GataKamsly12.jpg"
         ]
@@ -2091,7 +2091,7 @@
         ],
         "lichess_name": [],
         "peak_rating": 2830,
-        "sport_country": "United States of America",
+        "sport_country": "USA",
         "citizenship_country": "Americain",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/LevonAronian14a.jpg"

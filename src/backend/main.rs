@@ -42,6 +42,13 @@ struct PlayerDisplay {
     image: String,
 }
 
+#[derive(Serialize)]
+struct GameResultDisplay {
+    success: bool,
+    time: String,
+    player: PlayerDisplay,
+}
+
 #[derive(Deserialize)]
 struct GameRequest {
     game_id: u32,
@@ -189,9 +196,30 @@ async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequ
     }
 
     let player_display = get_player_display(&state.player_infos, request.game_id, num_lines);
+
     if player_display.is_none() {
-        return StatusCode::IM_A_TEAPOT.into_response();
+        let player_display = get_player_display(&state.player_infos, request.game_id, MAX_HINT)
+            .unwrap_or(PlayerDisplay {
+                name: "".to_string(),
+                lines: vec![],
+                image: "".to_string(),
+            });
+
+        let result = GameResultDisplay {
+            success: false,
+            time: "".to_string(),
+            player: player_display,
+        };
+
+        let template = state.env.get_template("result").unwrap();
+        let rendered = template.render(context!(result => result));
+
+        return match rendered {
+            Ok(result) => Html(result).into_response(),
+            Err(..) => Html("").into_response(),
+        };
     }
+
     let player_display = player_display.unwrap();
 
     let template = state.env.get_template("playarea").unwrap();
@@ -248,13 +276,6 @@ async fn submit_answer(
     if (request.name.to_lowercase()
         == get_answer(&state.player_infos, request.game_id).to_lowercase())
     {
-        #[derive(Serialize)]
-        struct GameResultDisplay {
-            success: bool,
-            time: String,
-            player: PlayerDisplay,
-        }
-
         let game_states = state.game_states.read().unwrap();
         if let Some(game_state) = game_states.get(&request.game_id) {
             let duration = SystemTime::now()

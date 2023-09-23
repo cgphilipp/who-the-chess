@@ -90,7 +90,7 @@
         {% include 'prediction' %}
 
         <form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target=".background"
-          hx-target-418=".dummy" hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
+          hx-target-418=".dummy" hx-swap="outerHTML" hx-vals='js:{"game_id": getGameId(), "name": getCurrentName()}'>
 
           <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus hx-get="/prediction"
             hx-target="#prediction" hx-trigger="input delay:0.1s" hx-swap="outerHTML"
