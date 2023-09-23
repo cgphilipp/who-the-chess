@@ -27,8 +27,15 @@ If you are on Windows, first prepare for cross-compilation to Linux x86: https:/
 1. Build a release target for x86_64-unknown-linux-musl: `cargo build --target x86_64-unknown-linux-musl --release`
 2. Run `fly launch`
 
+To set the amount of machines per region use
+```
+fly scale count 1 --region ams
+```
+This specifies that exactly one machine should run in Amsterdam (`ams`).
+
 ## TODO
 
+- Implement enter for new game
 - Implement variable sizing based on document size, test on mobile devices
 - Design results page
 - Make order of categories more variable

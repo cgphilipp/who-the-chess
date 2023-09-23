@@ -13,7 +13,6 @@ use std::{
     collections::HashSet,
     net::{IpAddr, Ipv6Addr, SocketAddr},
     sync::Arc,
-    time::Instant,
 };
 
 #[derive(Clone)]
