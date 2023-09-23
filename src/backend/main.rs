@@ -11,7 +11,7 @@ use minijinja::{context, Environment};
 use serde::{Deserialize, Serialize};
 use std::{
     collections::{HashMap, HashSet},
-    net::SocketAddr,
+    net::{IpAddr, Ipv6Addr, SocketAddr},
     sync::{Arc, RwLock},
     time::{Duration, SystemTime},
 };
@@ -374,7 +374,7 @@ async fn main() {
         .route("/assets/*path", get(assets))
         .with_state(state);
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = &SocketAddr::new(IpAddr::from(Ipv6Addr::UNSPECIFIED), 8080);
     println!("Listening on {}...", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
