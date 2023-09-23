@@ -9,7 +9,7 @@
 
 <div class="dummy" style="display: none;"></div>
 <form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target="body" hx-target-418=".dummy"
-  hx-swap="outerHTML" hx-vals='js:{"game_id": getGameId(), "name": getCurrentAnswer()}'>
+  hx-swap="outerHTML" hx-vals='js:{"game_id": getGameId(), "name": getCurrentAnswer()}' hx-on:submit="flashAnswer()">
 
   <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus hx-get="/prediction"
     hx-target="#prediction" hx-trigger="input delay:0.1s" hx-swap="outerHTML"

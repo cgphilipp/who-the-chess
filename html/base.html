@@ -40,6 +40,16 @@
         return submitElement.value;
     }
 
+    function flashAnswer() {
+        var submitElement = document.getElementById("answerBox");
+        if (submitElement) {
+            submitElement.classList.add("flash-red");
+            setTimeout(() => {
+                submitElement.classList.remove("flash-red");
+            }, 500);
+        }
+    }
+
     function copyPrediction() {
         var submitElement = document.getElementById("answerBox");
         var predictionElement = document.getElementById("predictionBox");

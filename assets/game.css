@@ -244,6 +244,21 @@ a {
     font-weight: 600;
 }
 
+.flash-red {
+    animation: flashRed 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flashRed {
+    0% {
+        background: #E49B59
+    }
+
+    100% {
+        background: #FAFAFA;
+    }
+}
+
 .tabhint {
     width: 25%;
     color: #4E6A74;
