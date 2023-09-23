@@ -13,6 +13,7 @@ use std::{
     collections::{HashMap, HashSet},
     net::SocketAddr,
     sync::{Arc, RwLock},
+    time::{Duration, SystemTime},
 };
 
 #[derive(Clone)]
@@ -25,6 +26,7 @@ struct AppState<'a> {
 #[derive(Clone)]
 struct GameState {
     current_hint: u32,
+    start_time: SystemTime,
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -33,8 +35,9 @@ struct Line {
     answer: String,
 }
 
-#[derive(Clone)]
+#[derive(Clone, Serialize)]
 struct PlayerDisplay {
+    name: String,
     lines: Vec<Line>,
     image: String,
 }
@@ -70,13 +73,15 @@ fn get_answer(player_infos: &HashMap<String, PlayerInfo>, game_id: u32) -> Strin
     name.clone()
 }
 
+const MAX_HINT: u32 = 6;
+
 fn get_player_display(
     player_infos: &HashMap<String, PlayerInfo>,
     game_id: u32,
     hint_nr: u32,
 ) -> Option<PlayerDisplay> {
     let player_id = game_id as usize % player_infos.len();
-    let (_, info) = player_infos.iter().nth(player_id).unwrap();
+    let (name, info) = player_infos.iter().nth(player_id).unwrap();
 
     let lines = vec![
         Line {
@@ -106,12 +111,12 @@ fn get_player_display(
         },
     ];
 
-    if hint_nr as usize >= lines.len() + 2 {
+    if hint_nr as u32 > MAX_HINT {
         return None;
     }
 
     let mut image = "".to_string();
-    if hint_nr as usize >= lines.len() + 1 {
+    if hint_nr as u32 == MAX_HINT {
         image = info.images.iter().nth(0).unwrap_or(&"".to_string()).clone();
     }
 
@@ -119,6 +124,7 @@ fn get_player_display(
     let display_lines = &lines[0..last_hint];
 
     Some(PlayerDisplay {
+        name: name.clone(),
         lines: display_lines.to_vec(),
         image: image,
     })
@@ -142,7 +148,13 @@ async fn start_game(
 
     {
         let mut game_states = state.game_states.write().unwrap();
-        game_states.insert(request.game_id, GameState { current_hint: 2 });
+        game_states.insert(
+            request.game_id,
+            GameState {
+                current_hint: 2,
+                start_time: SystemTime::now(),
+            },
+        );
     }
 
     let player_display = get_player_display(&state.player_infos, request.game_id, 1).unwrap();
@@ -236,10 +248,43 @@ async fn submit_answer(
     if (request.name.to_lowercase()
         == get_answer(&state.player_infos, request.game_id).to_lowercase())
     {
-        let template = state.env.get_template("result").unwrap();
-        let rendered = template.render(context!(success => true));
+        #[derive(Serialize)]
+        struct GameResultDisplay {
+            success: bool,
+            time: String,
+            player: PlayerDisplay,
+        }
 
-        return Html(rendered.unwrap()).into_response();
+        let game_states = state.game_states.read().unwrap();
+        if let Some(game_state) = game_states.get(&request.game_id) {
+            let duration = SystemTime::now()
+                .duration_since(game_state.start_time)
+                .unwrap_or(Duration::new(0, 0));
+            let micros_str = duration.as_micros().to_string();
+            let duration_str = if micros_str.len() >= 4 {
+                micros_str[0..2].to_string() + "." + micros_str[2..4].as_ref()
+            } else {
+                duration.as_secs().to_string()
+            };
+
+            let player_display = get_player_display(&state.player_infos, request.game_id, MAX_HINT)
+                .unwrap_or(PlayerDisplay {
+                    name: "".to_string(),
+                    lines: vec![],
+                    image: "".to_string(),
+                });
+
+            let result = GameResultDisplay {
+                success: true,
+                time: duration_str,
+                player: player_display,
+            };
+
+            let template = state.env.get_template("result").unwrap();
+            let rendered = template.render(context!(result => result));
+
+            return Html(rendered.unwrap()).into_response();
+        }
     }
 
     // dummy code for wrong answer
