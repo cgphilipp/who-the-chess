@@ -25,6 +25,5 @@ If you are on Windows, first prepare for cross-compilation to Linux x86: https:/
 - Implement variable sizing based on document size, test on mobile devices
 - Design results page
 - Make order of categories more variable
-- Add animations for new categories
 - Try to reduce font download size
 - Host images in /assets, scale them down to a reasonable size (300px height?)

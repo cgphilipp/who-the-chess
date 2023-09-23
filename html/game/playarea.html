@@ -2,14 +2,15 @@
     <h1>Who's this SuperGM?</h1>
 
     {% for line in lines %}
-    <div class="flexparentrow playline">
+    <div class="flexparentrow playline {% if line.animated %} playline-animation {% endif %}">
         <div class="category">{{ line.category }}</div>
         <div class="divider"></div>
         <div class="answer">{{ line.answer }}</div>
     </div>
     {% endfor %}
 
-    <img src="{{ img_src }}" alt="Player" height="250" {% if not show_image %} style="display: none;" {% endif %}>
+    <img class="playline-animation" src="{{ img_src }}" alt="Player" height="250" {% if not show_image %}
+        style="display: none;" {% endif %}>
 
     <div class="progressbar-wrapper">
         <div class="progressbar"></div>

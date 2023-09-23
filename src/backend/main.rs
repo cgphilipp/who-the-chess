@@ -48,6 +48,7 @@ struct AppState<'a> {
 struct Line {
     category: String,
     answer: String,
+    animated: bool,
 }
 
 #[derive(Clone, Serialize)]
@@ -111,22 +112,27 @@ fn get_player_display(
         Line {
             category: "Peak rating".to_string(),
             answer: info.peak_rating.to_string(),
+            animated: hint_nr == 1,
         },
         Line {
             category: "Birth date".to_string(),
             answer: info.birth_date.clone(),
+            animated: hint_nr == 2,
         },
         Line {
             category: "Year of GM title".to_string(),
             answer: info.year_of_gm.to_string(),
+            animated: hint_nr == 3,
         },
         Line {
             category: "Citizenship".to_string(),
             answer: info.citizenship_country.clone(),
+            animated: hint_nr == 4,
         },
         Line {
             category: "Birth place".to_string(),
             answer: info.birth_place.to_string(),
+            animated: hint_nr == 5,
         },
         Line {
             category: "Chess.com username".to_string(),
@@ -136,6 +142,7 @@ fn get_player_display(
                 .nth(0)
                 .unwrap_or(&"Unknown".to_string())
                 .clone(),
+            animated: hint_nr == 6,
         },
     ];
 

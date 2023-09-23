@@ -116,8 +116,52 @@ a {
     overflow-y: auto;
 
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
     position: relative;
+}
+
+.playline {
+    background: #F7F9F5;
+    border: 1px #CAD5CD;
+    border-style: solid;
+    border-radius: 0.5rem;
+
+    width: 100%;
+    height: 2.8rem;
+
+    display: flex;
+    position: relative;
+
+    align-items: center;
+    justify-content: space-between;
+
+    color: #2F4858;
+    font-size: 2rem;
+}
+
+.playline-animation {
+    animation: fadeIn 0.75s ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.category {
+    margin: 1rem;
+    font-weight: 600;
+}
+
+.answer {
+    margin: 1rem;
+    font-weight: 400;
 }
 
 .progressbar-wrapper {
@@ -127,7 +171,20 @@ a {
     border: 1px #2F4858;
     border-radius: 2.5rem;
     border-style: solid;
-    margin: 2.5%;
+    margin: 0.5rem;
+
+    animation: progressFade 7s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes progressFade {
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 .progressbar {
@@ -136,8 +193,8 @@ a {
     height: 1rem;
     border-radius: 2.5rem;
 
-    animation: progressBar 6.7s ease-in-out;
-    animation-fill-mode: both;
+    animation: progressBar 6s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 @keyframes progressBar {
@@ -150,33 +207,6 @@ a {
         width: 100%;
         background: #be7c25;
     }
-}
-
-.playline {
-    background: #F7F9F5;
-    border-radius: 0.5rem;
-
-    width: 100%;
-    height: 2.5rem;
-
-    display: flex;
-    position: relative;
-
-    align-items: center;
-    justify-content: space-between;
-
-    color: #2F4858;
-    font-size: 2rem;
-}
-
-.category {
-    margin: 1rem;
-    font-weight: 600;
-}
-
-.answer {
-    margin: 1rem;
-    font-weight: 400;
 }
 
 .divider {
