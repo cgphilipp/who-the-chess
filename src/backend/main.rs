@@ -41,7 +41,7 @@ impl Drop for Timer {
 #[derive(Clone)]
 struct AppState<'a> {
     env: Environment<'a>,
-    player_infos: Arc<HashMap<String, PlayerInfo>>,
+    player_infos: Arc<Vec<PlayerInfo>>,
 }
 
 #[derive(Debug, Serialize, Clone)]
@@ -78,6 +78,7 @@ struct AnswerRequest {
 
 #[derive(Deserialize)]
 struct PlayerInfo {
+    name: String,
     birth_date: String,
     birth_place: String,
     year_of_gm: i32,
@@ -89,22 +90,22 @@ struct PlayerInfo {
     images: HashSet<String>,
 }
 
-fn get_answer(player_infos: &HashMap<String, PlayerInfo>, game_id: u32) -> String {
+fn get_answer(player_infos: &Vec<PlayerInfo>, game_id: u32) -> String {
     let player_id = game_id as usize % player_infos.len();
-    let (name, _) = player_infos.iter().nth(player_id).unwrap();
+    let info = player_infos.get(player_id).unwrap();
 
-    name.clone()
+    info.name.clone()
 }
 
 const MAX_HINT: u32 = 6;
 
 fn get_player_display(
-    player_infos: &HashMap<String, PlayerInfo>,
+    player_infos: &Vec<PlayerInfo>,
     game_id: u32,
     hint_nr: u32,
 ) -> Option<PlayerDisplay> {
     let player_id = game_id as usize % player_infos.len();
-    let (name, info) = player_infos.iter().nth(player_id).unwrap();
+    let info = player_infos.get(player_id).unwrap();
 
     let lines = vec![
         Line {
@@ -147,7 +148,7 @@ fn get_player_display(
     let display_lines = &lines[0..last_hint];
 
     Some(PlayerDisplay {
-        name: name.clone(),
+        name: info.name.clone(),
         lines: display_lines.to_vec(),
         image: image,
     })
@@ -244,12 +245,12 @@ async fn get_prediction(
 
     let requested_name = request.name.to_lowercase();
 
-    for (name, _) in state.player_infos.iter() {
-        let parts = name.split(" ");
+    for player in state.player_infos.iter() {
+        let parts = player.name.split(" ");
         for part in parts {
             if part.to_lowercase().starts_with(requested_name.as_str()) {
                 let html = template
-                    .render(context!(show_prediction => true, prediction => name))
+                    .render(context!(show_prediction => true, prediction => player.name))
                     .unwrap_or("".to_string());
                 return Html(html);
             }
@@ -341,7 +342,7 @@ macro_rules! add_template {
 
 #[tokio::main]
 async fn main() {
-    let entries: HashMap<String, PlayerInfo> = serde_json::from_str(include_str!(concat!(
+    let entries: Vec<PlayerInfo> = serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
         "/resources/player-data.json"
     )))

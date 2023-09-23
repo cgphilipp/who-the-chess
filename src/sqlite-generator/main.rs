@@ -13,6 +13,7 @@ struct PlayerDumpEntry {
 
 #[derive(Debug, Default, Serialize)]
 struct PlayerInfo {
+    name: String,
     birth_date: String,
     birth_place: String,
     year_of_gm: i32,
@@ -41,6 +42,10 @@ fn main() {
     for entry in entries.iter() {
         if !players.contains_key(&entry.playerLabel) {
             players.insert(entry.playerLabel.clone(), PlayerInfo::new());
+
+            if let Some(player) = players.get_mut(&entry.playerLabel) {
+                player.name = entry.playerLabel.clone();
+            }
         }
 
         if entry.wdLabel == "Lichess username" {
@@ -113,11 +118,12 @@ fn main() {
         }
     }
 
-    for (name, player_info) in players.iter() {
-        println!("{} => {:?}", name, player_info);
+    for player_info in players.values() {
+        println!("{:?}", player_info);
     }
 
-    let json = serde_json::to_string(&players);
+    let player_array = Vec::from_iter(players.values());
+    let json = serde_json::to_string(&player_array);
     match json {
         Ok(string) => {
             println!("Serializing JSON...");
