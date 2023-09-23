@@ -10,7 +10,7 @@ use include_dir::{include_dir, Dir};
 use minijinja::{context, Environment};
 use serde::{Deserialize, Serialize};
 use std::{
-    collections::{HashMap, HashSet},
+    collections::HashSet,
     net::{IpAddr, Ipv6Addr, SocketAddr},
     sync::Arc,
     time::Instant,
@@ -139,10 +139,7 @@ fn get_player_display(
         return None;
     }
 
-    let mut image = "".to_string();
-    if hint_nr as u32 == MAX_HINT {
-        image = info.images.iter().nth(0).unwrap_or(&"".to_string()).clone();
-    }
+    let image = info.images.iter().nth(0).unwrap_or(&"".to_string()).clone();
 
     let last_hint = std::cmp::min(hint_nr as usize, lines.len());
     let display_lines = &lines[0..last_hint];
@@ -214,9 +211,11 @@ async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequ
 
     let player_display = player_display.unwrap();
 
+    let show_image = request.hint_id as u32 == MAX_HINT;
+
     let template = state.env.get_template("playarea").unwrap();
     let rendered = template.render(
-        context!(lines => player_display.lines, show_image => !player_display.image.is_empty(), img_src => player_display.image),
+        context!(lines => player_display.lines, show_image => show_image, img_src => player_display.image),
     );
 
     match rendered {
@@ -244,6 +243,19 @@ async fn get_prediction(
     let requested_name = request.name.to_lowercase();
 
     for player in state.player_infos.iter() {
+        // first check against full name
+        if player
+            .name
+            .to_lowercase()
+            .starts_with(requested_name.as_str())
+        {
+            let html = template
+                .render(context!(show_prediction => true, prediction => player.name))
+                .unwrap_or("".to_string());
+            return Html(html);
+        }
+
+        // then check against parts of name only
         let parts = player.name.split(" ");
         for part in parts {
             if part.to_lowercase().starts_with(requested_name.as_str()) {
@@ -268,8 +280,8 @@ async fn submit_answer(
         request.game_id, request.name
     ));
 
-    if (request.name.to_lowercase()
-        == get_answer(&state.player_infos, request.game_id).to_lowercase())
+    if request.name.to_lowercase()
+        == get_answer(&state.player_infos, request.game_id).to_lowercase()
     {
         // TODO reimplement duration counting with database access
         // let duration = SystemTime::now()

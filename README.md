@@ -22,7 +22,6 @@ If you are on Windows, first prepare for cross-compilation to Linux x86: https:/
 
 ## TODO
 
-- Preload images
 - Implement variable sizing based on document size, test on mobile devices
 - Design results page
 - Make order of categories more variable
