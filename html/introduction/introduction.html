@@ -1,0 +1,16 @@
+{% extends "base" %}
+
+{% block content %}
+<div class="flexparentcol playarea">
+    <h1>Who's this SuperGM?</h1>
+
+    <div class="explanation">
+        <p>Every few seconds, you will get additional information about a 2700+ chess player.
+            Try to find out who it is as fast as you can.</p>
+        <p>♟️ ♟️ ♟️</p>
+        <p>Good luck and have fun! </p>
+    </div>
+    <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
+        hx-target="body" hx-swap="outerHTML">Play</button>
+</div>
+{% endblock %}

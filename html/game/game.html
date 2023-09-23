@@ -1,0 +1,21 @@
+{% extends "base" %}
+
+{% block content %}
+{% include 'playarea' %}
+{% endblock %}
+
+{% block editarea %}
+{% include 'prediction' %}
+
+<div class="dummy" style="display: none;"></div>
+<form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target="body" hx-target-418=".dummy"
+  hx-swap="outerHTML" hx-vals='js:{"game_id": getGameId(), "name": getCurrentAnswer()}'>
+
+  <input type="text" class="textedit" id="answerBox" autocomplete="off" autofocus hx-get="/prediction"
+    hx-target="#prediction" hx-trigger="input delay:0.1s" hx-swap="outerHTML"
+    hx-vals='js:{"game_id": getGameId(), "name": getCurrentAnswer()}'></input>
+
+  <button type="submit" class="button">Submit</button>
+
+</form>
+{% endblock %}

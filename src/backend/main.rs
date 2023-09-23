@@ -157,8 +157,8 @@ fn get_player_display(
 async fn introduction(State(state): State<AppState<'_>>) -> Html<String> {
     let _timer = Timer::new("Intro".to_string());
 
-    let template = state.env.get_template("game").unwrap();
-    let rendered = template.render(context!(start_screen => true));
+    let template = state.env.get_template("introduction").unwrap();
+    let rendered = template.render(context!());
 
     match rendered {
         Ok(result) => Html(result),
@@ -176,9 +176,7 @@ async fn start_game(
         get_player_display(&state.player_infos, request.game_id, request.hint_id).unwrap();
 
     let template = state.env.get_template("game").unwrap();
-    let rendered = template.render(
-        context!(lines => player_display.lines, start_screen => false, show_image => false),
-    );
+    let rendered = template.render(context!(lines => player_display.lines, show_image => false));
 
     match rendered {
         Ok(result) => Html(result),
@@ -349,10 +347,14 @@ async fn main() {
     .expect("JSON was not well-formatted");
 
     let mut env = Environment::new();
-    add_template!(env, "game", "/html/game.html");
-    add_template!(env, "playarea", "/html/playarea.html");
-    add_template!(env, "result", "/html/result.html");
-    add_template!(env, "prediction", "/html/prediction.html");
+    add_template!(env, "base", "/html/base.html");
+
+    add_template!(env, "game", "/html/game/game.html");
+    add_template!(env, "playarea", "/html/game/playarea.html");
+    add_template!(env, "prediction", "/html/game/prediction.html");
+
+    add_template!(env, "introduction", "/html/introduction/introduction.html");
+    add_template!(env, "result", "/html/result/result.html");
 
     let state = AppState {
         env,
