@@ -13,6 +13,13 @@ To watch the `backend` executable for changes use
 cargo watch -- cargo run --bin backend
 ```
 
+## Benchmarking
+
+For benchmarking, rewrk is a useful tool: https://github.com/lnx-search/rewrk. To benchmark the `/prediction` endpoint use
+```
+rewrk -c 256 -t 12 -d 15s -h "http://localhost:8080/prediction?game_id=1337&name=carlsen" --pct
+```
+
 ## Deployment
 
 If you are on Windows, first prepare for cross-compilation to Linux x86: https://github.com/KodrAus/rust-cross-compile

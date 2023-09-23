@@ -16,28 +16,6 @@ use std::{
     time::Instant,
 };
 
-pub struct Timer {
-    name: String,
-    start: Instant,
-}
-
-impl Timer {
-    pub fn new(name: String) -> Timer {
-        Timer {
-            name,
-            start: Instant::now(),
-        }
-    }
-}
-
-impl Drop for Timer {
-    fn drop(&mut self) {
-        let duration = Instant::now().duration_since(self.start);
-        let millis = duration.as_micros() as f64 / 1000.0;
-        println!("{} | {}ms ", self.name, millis);
-    }
-}
-
 #[derive(Clone)]
 struct AppState<'a> {
     env: Environment<'a>,
@@ -163,8 +141,6 @@ fn get_player_display(
 }
 
 async fn introduction(State(state): State<AppState<'_>>) -> Html<String> {
-    let _timer = Timer::new("Intro".to_string());
-
     let template = state.env.get_template("introduction").unwrap();
     let rendered = template.render(context!());
 
@@ -178,8 +154,6 @@ async fn start_game(
     State(state): State<AppState<'_>>,
     request: Query<GameRequest>,
 ) -> Html<String> {
-    let _timer = Timer::new(format!("Start game [game_id {}]", request.game_id));
-
     let player_display =
         get_player_display(&state.player_infos, request.game_id, request.hint_id).unwrap();
 
@@ -193,8 +167,6 @@ async fn start_game(
 }
 
 async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequest>) -> Response {
-    let _timer = Timer::new(format!("Request [game_id {}]", request.game_id));
-
     let player_display = get_player_display(&state.player_infos, request.game_id, request.hint_id);
 
     if player_display.is_none() {
@@ -239,11 +211,6 @@ async fn get_prediction(
     State(state): State<AppState<'_>>,
     request: Query<AnswerRequest>,
 ) -> Html<String> {
-    let _timer = Timer::new(format!(
-        "Get prediction [game_id {}]: {}",
-        request.game_id, request.name
-    ));
-
     let template = state.env.get_template("prediction").unwrap();
 
     if request.name.len() < 3 {
@@ -286,11 +253,6 @@ async fn submit_answer(
     State(state): State<AppState<'_>>,
     request: Query<AnswerRequest>,
 ) -> Response {
-    let _timer = Timer::new(format!(
-        "Answer [game_id {}]: {}",
-        request.game_id, request.name
-    ));
-
     if request.name.to_lowercase()
         == get_answer(&state.player_infos, request.game_id).to_lowercase()
     {
@@ -330,8 +292,6 @@ async fn submit_answer(
 
 static STATIC_DIR: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/assets");
 async fn assets(Path(path): Path<String>) -> Response {
-    let _timer = Timer::new(format!("Asset req [path {}]", path));
-
     let path = path.trim_start_matches('/');
     let mime_type = mime_guess::from_path(path).first_or_text_plain();
 
