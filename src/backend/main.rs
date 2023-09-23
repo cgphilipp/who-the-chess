@@ -1,11 +1,12 @@
 use axum::{
-    extract::Query,
-    extract::State,
-    http::StatusCode,
+    body::{self, Empty, Full},
+    extract::{Path, Query, State},
+    http::{header, HeaderValue, StatusCode},
     response::{Html, IntoResponse, Response},
-    routing::{get, post},
+    routing::get,
     Router,
 };
+use include_dir::{include_dir, Dir};
 use minijinja::{context, Environment};
 use serde::{Deserialize, Serialize};
 use std::{
@@ -13,7 +14,6 @@ use std::{
     net::SocketAddr,
     sync::{Arc, RwLock},
 };
-use tower_http::services::ServeDir;
 
 #[derive(Clone)]
 struct AppState<'a> {
@@ -246,34 +246,58 @@ async fn submit_answer(
     StatusCode::IM_A_TEAPOT.into_response()
 }
 
+static STATIC_DIR: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/assets");
+async fn assets(Path(path): Path<String>) -> Response {
+    println!("Asset req [path {}]", path);
+
+    let path = path.trim_start_matches('/');
+    let mime_type = mime_guess::from_path(path).first_or_text_plain();
+
+    match STATIC_DIR.get_file(path) {
+        None => Response::builder()
+            .status(StatusCode::NOT_FOUND)
+            .body(body::boxed(Empty::new()))
+            .unwrap(),
+        Some(file) => Response::builder()
+            .status(StatusCode::OK)
+            .header(
+                header::CONTENT_TYPE,
+                HeaderValue::from_str(mime_type.as_ref()).unwrap(),
+            )
+            .body(body::boxed(Full::from(file.contents())))
+            .unwrap(),
+    }
+}
+
+macro_rules! add_template {
+    ($env:expr,$name:expr,$path:expr) => {
+        $env.add_template(
+            $name,
+            include_str!(concat!(env!("CARGO_MANIFEST_DIR"), $path)),
+        )
+        .expect("Could not load a template!");
+    };
+}
+
 #[tokio::main]
 async fn main() {
-    let entries: HashMap<String, PlayerInfo> =
-        serde_json::from_str(include_str!("../../resources/player-data.json"))
-            .expect("JSON was not well-formatted");
+    let entries: HashMap<String, PlayerInfo> = serde_json::from_str(include_str!(concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/resources/player-data.json"
+    )))
+    .expect("JSON was not well-formatted");
 
-    let mut state = AppState {
-        env: Environment::new(),
+    let mut env = Environment::new();
+    add_template!(env, "game", "/html/game.html");
+    add_template!(env, "playarea", "/html/playarea.html");
+    add_template!(env, "result", "/html/result.html");
+    add_template!(env, "prediction", "/html/prediction.html");
+
+    let state = AppState {
+        env,
         game_states: Arc::new(RwLock::new(HashMap::new())),
         player_infos: Arc::new(entries),
     };
-
-    state
-        .env
-        .add_template("game", include_str!("../../html/game.html"))
-        .expect("Could not load a template!");
-    state
-        .env
-        .add_template("playarea", include_str!("../../html/playarea.html"))
-        .expect("Could not load a template!");
-    state
-        .env
-        .add_template("result", include_str!("../../html/result.html"))
-        .expect("Could not load a template!");
-    state
-        .env
-        .add_template("prediction", include_str!("../../html/prediction.html"))
-        .expect("Could not load a template!");
 
     let app = Router::new()
         .route("/", get(introduction))
@@ -281,7 +305,7 @@ async fn main() {
         .route("/category", get(get_category))
         .route("/answer", get(submit_answer))
         .route("/prediction", get(get_prediction))
-        .nest_service("/assets", ServeDir::new("assets"))
+        .route("/assets/*path", get(assets))
         .with_state(state);
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));

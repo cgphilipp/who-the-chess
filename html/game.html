@@ -48,8 +48,6 @@
     }
 
     htmx.on("keydown", function (evt) {
-      console.log(evt);
-
       if (evt.key === 'Tab') {
         copyPrediction();
         evt.preventDefault();
