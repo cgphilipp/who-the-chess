@@ -83,9 +83,9 @@ struct PlayerInfo {
     birth_place: String,
     year_of_gm: i32,
     chess_com_name: HashSet<String>,
-    lichess_name: HashSet<String>,
+    // lichess_name: HashSet<String>, // dont have data often enough sadly :(
     peak_rating: u32,
-    sport_country: String,
+    // sport_country: String, // very often the same as citizenship, lets leave it out
     citizenship_country: String,
     images: HashSet<String>,
 }
@@ -97,7 +97,7 @@ fn get_answer(player_infos: &Vec<PlayerInfo>, game_id: u32) -> String {
     info.name.clone()
 }
 
-const MAX_HINT: u32 = 6;
+const MAX_HINT: u32 = 7;
 
 fn get_player_display(
     player_infos: &Vec<PlayerInfo>,
@@ -123,6 +123,10 @@ fn get_player_display(
         Line {
             category: "Citizenship".to_string(),
             answer: info.citizenship_country.clone(),
+        },
+        Line {
+            category: "Birth place".to_string(),
+            answer: info.birth_place.to_string(),
         },
         Line {
             category: "Chess.com username".to_string(),
