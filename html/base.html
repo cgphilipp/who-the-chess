@@ -18,22 +18,64 @@
     <link rel="stylesheet" href="/assets/game.css">
 
     <script>
-        var currentGameId = 1337;
-        var currentHintId = 0;
+        class GameLogic {
+            constructor() {
+                this._currentGameId = 1337;
+                this._currentHintId = 0;
+                this._appStartTime = 0;
+                this._gameStartTime = 0;
+                this._correctAnswers = 0;
+                this._totalAnswers = 0;
+            }
 
-        function generateGameId() {
-            currentGameId = Math.floor(Math.random() * 16777215);
-            currentHintId = 0;
-            return currentGameId;
+            initApp() {
+                this._appStartTime = Date.now();
+            }
+
+            generateGameId() {
+                this._currentGameId = Math.floor(Math.random() * 16777215);
+                this._currentHintId = 0;
+                this._gameStartTime = Date.now();
+                return this._currentGameId;
+            }
+
+            getGameId() {
+                return this._currentGameId;
+            }
+
+            getHintId() {
+                return ++this._currentHintId;
+            }
+
+            getGameTime() {
+                const timeInSec = Math.floor((Date.now() - this._gameStartTime) / 1000.0);
+                return timeInSec + "s";
+            }
+
+            getAppTime() {
+                const timeInSec = Math.floor((Date.now() - this._appStartTime) / 1000.0);
+                return timeInSec + "s";
+            }
+
+            addCorrectAnswer() {
+                this._correctAnswers++;
+                this._totalAnswers++;
+            }
+
+            addWrongAnswer() {
+                this._totalAnswers++;
+            }
+
+            getCorrectAnswers() {
+                return this._correctAnswers;
+            }
+
+            getTotalAnswers() {
+                return this._totalAnswers;
+            }
         }
 
-        function getGameId() {
-            return currentGameId;
-        }
-
-        function getHintId() {
-            return ++currentHintId;
-        }
+        const gameLogic = new GameLogic();
 
         function getCurrentAnswer() {
             var submitElement = document.getElementById("answerBox");

@@ -1,8 +1,9 @@
 # Wikidata API
 
-https://query.wikidata.org/
+- https://query.wikidata.org/querybuilder/
+- https://query.wikidata.org/
 
-# Getting all 2700 players
+## Getting all 2700 players
 
 ```
 SELECT DISTINCT ?item ?itemLabel  WHERE {
@@ -20,11 +21,12 @@ SELECT DISTINCT ?item ?itemLabel  WHERE {
 
 ```
 
-# Source code for the dump
+## Source code for the dump
+
+Only later I found that there may be a simpler approach: https://stackoverflow.com/questions/66918787/get-all-properties-sub-properties-and-label-ids-from-wikidata-item
 
 ```
-
-SELECT ?playerLabel ?wdLabel ?ps_Label {
+SELECT ?playerLabel ?wdLabel ?ps_Label ?wdpqLabel ?pq_Label {
   VALUES (?player) {
 (wd:Q45747)
 (wd:Q445661)
@@ -175,6 +177,6 @@ SELECT ?playerLabel ?wdLabel ?ps_Label {
   }
   
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
-} ORDER BY ?wd ?statement ?ps_
+}
 
 ```

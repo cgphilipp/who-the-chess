@@ -1,7 +1,7 @@
 {% extends "base" %}
 
 {% block content %}
-<div class="flexparentcol playarea fade-animation">
+<div class="flexparentcol playarea">
     <h1>Who's this SuperGM?</h1>
 
     <div class="explanation">
@@ -10,7 +10,8 @@
         <p>♟️ ♟️ ♟️</p>
         <p>Good luck and have fun! </p>
     </div>
-    <button class="start-button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
-        hx-target="body" hx-swap="outerHTML">Play</button>
+    <button class="start-button" hx-get="/start_game"
+        hx-vals='js:{"game_id": gameLogic.generateGameId(), "hint_id": gameLogic.getHintId()}' hx-target="body"
+        hx-swap="outerHTML" hx-on:click="gameLogic.initApp()">Play</button>
 </div>
 {% endblock %}

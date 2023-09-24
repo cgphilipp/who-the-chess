@@ -6,17 +6,26 @@
     <h1>{{ result.player.name }}</h1>
     <img src="{{ result.player.image }}" alt="Player" height="250">
 
+    <!-- TODO this whole stats tracking using iframe onload is mega hacky :) It should all be done serverside with a database backing it -->
     {% if result.success %}
-    <!-- TODO reenable timing when implementing database access -->
-    <!-- <div class="timer">You found the correct answer in <b>{{ result.time }}</b> seconds!</div> -->
-
+    <iframe onload="gameLogic.addCorrectAnswer()" style="display: none;"></iframe>
     <div class="result-success">You found the correct answer!</div>
     {% else %}
+    <iframe onload="gameLogic.addWrongAnswer()" style="display: none;"></iframe>
     <div class="result-fail">You did not find the answer in time.</div>
     {% endif %}
 
-    <button class="start-button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
-        hx-target="body" hx-swap="outerHTML">Play again</button>
+    <div>Guess time: <span id="gameTime"></span> | Session time: <span id="appTime"></span> | Correct answers: <span
+            id="answerStats"></span> </div>
+    <iframe
+        onload="document.getElementById('gameTime').innerHTML = gameLogic.getGameTime();
+                document.getElementById('appTime').innerHTML = gameLogic.getAppTime();
+                document.getElementById('answerStats').innerHTML = gameLogic.getCorrectAnswers() + '/' + gameLogic.getTotalAnswers();"
+        style="display: none;"></iframe>
+
+    <button class="start-button" hx-get="/start_game"
+        hx-vals='js:{"game_id": gameLogic.generateGameId(), "hint_id": gameLogic.getHintId()}' hx-target="body"
+        hx-swap="outerHTML">Play again</button>
 
     {% for line in result.player.lines %}
     <div class="flexparentrow playline">

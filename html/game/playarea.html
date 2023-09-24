@@ -17,7 +17,7 @@
     </div>
 
     <!-- poll new categories -->
-    <div hx-get="/category" hx-vals='js:{"game_id": getGameId(), "hint_id": getHintId()}'
+    <div hx-get="/category" hx-vals='js:{"game_id": gameLogic.getGameId(), "hint_id": gameLogic.getHintId()}'
         hx-trigger="load once delay:7s" hx-target=".playarea" hx-target-201="body" hx-swap="outerHTML"
         style="display: none;">
     </div>
