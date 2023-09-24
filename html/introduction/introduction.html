@@ -10,7 +10,7 @@
         <p>♟️ ♟️ ♟️</p>
         <p>Good luck and have fun! </p>
     </div>
-    <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
+    <button class="start-button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
         hx-target="body" hx-swap="outerHTML">Play</button>
 </div>
 {% endblock %}
