@@ -72,6 +72,7 @@
             }
         }
 
+        // handle tab autocomplete
         htmx.on("keydown", function (evt) {
             if (evt.key === 'Tab') {
                 copyPrediction();
@@ -79,6 +80,15 @@
                 evt.stopPropagation();
             }
         });
+
+        // handle resize and communicate height changes to CSS
+        const documentHeight = () => {
+            var doc = document.documentElement;
+            doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+        }
+        window.addEventListener('resize', documentHeight);
+        documentHeight();
+
     </script>
 </head>
 {% endblock %}

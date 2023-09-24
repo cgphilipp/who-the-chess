@@ -3,6 +3,14 @@
     src: url(/assets/EncodeSansSemiExpanded-Regular.ttf);
 }
 
+/* 
+Calculate document height in a way suitable for mobile browsers 
+https://dev.to/nirazanbasnet/dont-use-100vh-for-mobile-responsive-3o97 
+*/
+:root {
+    --doc-height: 100%;
+}
+
 body {
     margin: 0px;
     overflow: hidden;
@@ -38,8 +46,12 @@ a {
 .container {
     align-items: center;
     gap: 0em;
-    height: 100vh;
+
     width: 100vw;
+
+    /* Use height calculated in JS for correct mobile layouting */
+    height: 100vh;
+    height: var(--doc-height);
 }
 
 .left-chessboard {
@@ -48,7 +60,7 @@ a {
 
     display: flex;
 
-    height: 100vh;
+    height: 100%;
     width: 20vw;
     min-width: 0vw;
     max-width: 300px;
@@ -62,7 +74,7 @@ a {
 
     display: flex;
 
-    height: 100vh;
+    height: 100%;
     width: 20vw;
     min-width: 0vw;
     max-width: 300px;
@@ -75,7 +87,7 @@ a {
 
     display: flex;
 
-    height: 100vh;
+    height: 100%;
     width: 100%;
 
     padding: 0em 0em;
