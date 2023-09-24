@@ -1092,7 +1092,7 @@
         ]
     },
     {
-        "name": "Gukesh D",
+        "name": "Gukesh Dommaraju",
         "birth_date": "29.5.2006",
         "birth_place": "Chennai",
         "year_of_gm": 2019,
@@ -1632,20 +1632,6 @@
         ]
     },
     {
-        "name": "Curt von Bardeleben",
-        "birth_date": "4.3.1861",
-        "birth_place": "Berlin",
-        "year_of_gm": 0,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2710,
-        "sport_country": "Germany",
-        "citizenship_country": "Germany",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Bardeleben.jpg"
-        ]
-    },
-    {
         "name": "Alexander Motylev",
         "birth_date": "17.6.1979",
         "birth_place": "Yekaterinburg",
@@ -1753,21 +1739,6 @@
         "citizenship_country": "India",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/TataSteelChess2018-13.jpg"
-        ]
-    },
-    {
-        "name": "Wilhelm Steinitz",
-        "birth_date": "17.5.1836",
-        "birth_place": "Prague",
-        "year_of_gm": 0,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2826,
-        "sport_country": "USA",
-        "citizenship_country": "USA",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Wilhelm%20Steinitz.jpg",
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Wilhelm%20Steinitz2.jpg"
         ]
     },
     {
