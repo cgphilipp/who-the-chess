@@ -1,8 +1,12 @@
 {% if show_prediction %}
 <div class="flexparentrow editparent" id="prediction">
-    <input type="text" class="textedit" id="predictionBox" value="{{ prediction }}" hx-on:click="copyPrediction()">
-    </input>
-    <div class="tabhint">↹ to complete</div>
+    <div class="text-wrapper">
+        <input type="text" class="textedit" id="predictionBox" value="{{ prediction }}" hx-on:click="copyPrediction()">
+        <div class="tab-hint">↹ to complete</div>
+    </div>
+
+    <!-- empty div for flex layouting purpose-->
+    <div style="width: 25%;"></div>
 </div>
 {% else %}
 <div id="prediction" style="display: none;"></div>

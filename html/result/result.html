@@ -25,7 +25,10 @@
 
     <button class="start-button" hx-get="/start_game"
         hx-vals='js:{"game_id": gameLogic.generateGameId(), "hint_id": gameLogic.getHintId()}' hx-target="body"
-        hx-swap="outerHTML">Play again</button>
+        hx-swap="outerHTML">
+        Play again
+        <div class="enter-hint">(Enter)</div>
+    </button>
 
     {% for line in result.player.lines %}
     <div class="flexparentrow playline">

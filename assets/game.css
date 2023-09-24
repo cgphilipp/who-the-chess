@@ -251,8 +251,13 @@ a {
     height: 3em;
 }
 
-.textedit {
+.text-wrapper {
     width: 75%;
+    height: 100%;
+}
+
+.textedit {
+    width: 100%;
     height: 100%;
 
     border-radius: 1.75em;
@@ -298,13 +303,25 @@ a {
     }
 }
 
-.tabhint {
-    width: 25%;
+.tab-hint {
+    position: relative;
+    height: 100%;
+    top: -75%;
+    float: right;
+    padding-right: 1em;
+
     color: #4E6A74;
 }
 
+@media only screen and (max-width: 750px) {
+    .tab-hint {
+        display: none;
+    }
+}
+
+
 .start-button {
-    width: 35%;
+    width: 45%;
     height: 1.5em;
 
     flex-shrink: 0;
@@ -317,6 +334,15 @@ a {
     text-align: center;
     font-size: 2.25em;
     font-weight: 600;
+}
+
+.enter-hint {
+    position: relative;
+    color: #FAFAFA;
+    top: -1em;
+    left: 8em;
+    font-size: 0.4em;
+    font-weight: 400;
 }
 
 .footer {

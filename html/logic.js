@@ -1,3 +1,6 @@
+// this is all stuff that should be handled on the server :)
+// ideally using a database so requests for the same game can be handled
+// on multiple servers
 class GameLogic {
     constructor() {
         this._currentGameId = 1337;
@@ -94,12 +97,21 @@ function copyPrediction() {
     }
 }
 
-// handle tab autocomplete
+// handle tab autocomplete and enter to start games
 htmx.on("keydown", function (evt) {
     if (evt.key === 'Tab') {
         copyPrediction();
         evt.preventDefault();
         evt.stopPropagation();
+    }
+
+    if (evt.key === 'Enter') {
+        const startButtons = document.getElementsByClassName("start-button");
+        if (startButtons.length > 0) {
+            startButtons[0].click();
+            evt.preventDefault();
+            evt.stopPropagation();
+        }
     }
 });
 

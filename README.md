@@ -35,10 +35,10 @@ This specifies that exactly one machine should run in Amsterdam (`ams`).
 
 ## TODO
 
-- Implement enter for new game
 - Implement a skipping function
 - Test on mobile devices, account for on-screen keyboard size
 - Design results page
+- Move the JS GameLogic class to server-side: generation of game IDs, tracking of game length and success rate
 - Make order of categories more variable
 - Try to reduce font download size
 - Host images in /assets, scale them down to a reasonable size (300px height?)
