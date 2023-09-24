@@ -334,6 +334,7 @@ async fn main() {
 
     let mut env = Environment::new();
     add_template!(env, "base", "/html/base.html");
+    add_template!(env, "logic", "/html/logic.js");
 
     add_template!(env, "game", "/html/game/game.html");
     add_template!(env, "playarea", "/html/game/playarea.html");

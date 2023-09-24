@@ -36,7 +36,7 @@ This specifies that exactly one machine should run in Amsterdam (`ams`).
 ## TODO
 
 - Implement enter for new game
-- Implement timing and score for session in JS
+- Implement a skipping function
 - Test on mobile devices, account for on-screen keyboard size
 - Design results page
 - Make order of categories more variable
