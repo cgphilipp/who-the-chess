@@ -7,13 +7,14 @@ body {
     margin: 0px;
     overflow: hidden;
 
+    font-size: 2vh;
     font-family: Encode;
     font-style: normal;
 }
 
 h1 {
     color: #4E6A73;
-    font-size: 3.5rem;
+    font-size: min(12vw, 4rem);
     font-weight: 700;
     text-align: center;
     width: 100%;
@@ -35,7 +36,7 @@ a {
 
 .container {
     align-items: center;
-    gap: 0rem;
+    gap: 0em;
     height: 100vh;
     width: 100vw;
 }
@@ -48,10 +49,10 @@ a {
 
     height: 100vh;
     width: 20vw;
-    min-width: 0px;
+    min-width: 0vw;
     max-width: 300px;
 
-    padding: 0rem 0rem;
+    padding: 0em 0em;
 }
 
 .right-chessboard {
@@ -62,10 +63,10 @@ a {
 
     height: 100vh;
     width: 20vw;
-    min-width: 0px;
+    min-width: 0vw;
     max-width: 300px;
 
-    padding: 0rem 0rem;
+    padding: 0em 0em;
 }
 
 .background {
@@ -75,9 +76,8 @@ a {
 
     height: 100vh;
     width: 100%;
-    /* min-width: 375px; */
 
-    padding: 0rem 0rem;
+    padding: 0em 0em;
 
     flex-direction: column;
     justify-content: space-between;
@@ -95,19 +95,19 @@ a {
 
 .explanation {
     text-align: center;
-    font-size: 1.25rem;
-    margin: 2rem;
+    font-size: 1.25em;
+    margin: 2em;
 }
 
 .result-success {
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.25em;
     color: #64A038;
 }
 
 .result-fail {
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.25em;
     color: #611515;
 }
 
@@ -116,7 +116,7 @@ a {
     overflow-y: auto;
 
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.75em;
     position: relative;
 }
 
@@ -124,10 +124,10 @@ a {
     background: #F7F9F5;
     border: 1px #CAD5CD;
     border-style: solid;
-    border-radius: 0.5rem;
+    border-radius: 0.5em;
 
     width: 100%;
-    height: 2.8rem;
+    height: 1.5em;
 
     display: flex;
     position: relative;
@@ -136,7 +136,7 @@ a {
     justify-content: space-between;
 
     color: #2F4858;
-    font-size: 2rem;
+    font-size: 1.3em;
 }
 
 .playline-animation {
@@ -155,29 +155,37 @@ a {
 }
 
 .category {
-    margin: 1rem;
+    margin: 1em;
     font-weight: 600;
 }
 
 .answer {
-    margin: 1rem;
+    margin: 1em;
     font-weight: 400;
 }
 
 .progressbar-wrapper {
     background: #FFFFFF00;
-    height: 1rem;
+    height: 0.75em;
     width: 95%;
     border: 1px #2F4858;
-    border-radius: 2.5rem;
+    border-radius: 2.5em;
     border-style: solid;
-    margin: 0.5rem;
+    margin: 0.5em;
 
     animation: progressFade 7s;
     animation-fill-mode: forwards;
 }
 
 @keyframes progressFade {
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
     85% {
         opacity: 1;
     }
@@ -190,8 +198,8 @@ a {
 .progressbar {
     background: #64A038;
     width: 30%;
-    height: 1rem;
-    border-radius: 2.5rem;
+    height: 100%;
+    border-radius: 2.5em;
 
     animation: progressBar 6s ease-in-out;
     animation-fill-mode: forwards;
@@ -213,7 +221,7 @@ a {
     position: absolute;
     left: 50%;
 
-    width: 0.3125rem;
+    width: 0.3em;
     height: 100%;
     background: #005AA1;
 }
@@ -222,26 +230,44 @@ a {
     align-items: center;
     justify-content: space-around;
 
-    gap: 0.5rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+
+    height: 3em;
 }
 
 .textedit {
     width: 75%;
-    height: 4rem;
+    height: 100%;
 
-    border-radius: 1.75rem;
+    border-radius: 1.75em;
     border: 1px solid #4E6A74;
     background: #FAFAFA;
 
     font-family: Encode;
     font-style: normal;
+    font-size: 1.3em;
+    font-weight: 600;
     color: #2F4858;
     text-align: center;
-    font-size: 2.25rem;
+}
+
+.answer-button {
+    width: 25%;
+    height: 100%;
+
+    flex-shrink: 0;
+    border-radius: 1.75em;
+    background: #2F4858;
+    color: #FAFAFA;
+
+    font-family: Encode;
+    font-style: normal;
+    font-size: 1.3em;
     font-weight: 600;
+    text-align: center;
 }
 
 .flash-red {
@@ -264,34 +290,33 @@ a {
     color: #4E6A74;
 }
 
-.button {
-    width: 25%;
-    min-width: 10rem;
-    height: 4rem;
+.start-button {
+    width: 35%;
+    height: 2em;
 
     flex-shrink: 0;
-    border-radius: 1.75rem;
+    border-radius: 1.75em;
     background: #2F4858;
 
     font-family: Encode;
     font-style: normal;
-    color: #FFF;
+    color: #FAFAFA;
     text-align: center;
-    font-size: 2.25rem;
+    font-size: 2.25em;
     font-weight: 600;
 }
 
 .footer {
     background: #2F4858;
 
-    bottom: 0px;
-    height: 1.2rem;
+    bottom: 0em;
+    height: 1.5em;
     width: 100%;
 
     font-family: Encode;
     font-style: normal;
     text-align: center;
     color: #c5c5c5;
-    font-size: 0.8rem;
+    font-size: min(1.2vw, 0.6em);
     font-weight: 300;
 }

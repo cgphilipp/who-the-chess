@@ -15,7 +15,7 @@
     <div class="result-fail">You did not find the answer in time.</div>
     {% endif %}
 
-    <button class="button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
+    <button class="start-button" hx-get="/start_game" hx-vals='js:{"game_id": generateGameId(), "hint_id": getHintId()}'
         hx-target="body" hx-swap="outerHTML">Play again</button>
 
     {% for line in result.player.lines %}
