@@ -152,7 +152,7 @@ a {
     font-size: 1.3em;
 }
 
-.playline-animation {
+.fade-animation {
     animation: fadeIn 0.75s ease-in-out;
     animation-fill-mode: both;
 }
