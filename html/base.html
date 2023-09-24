@@ -3,106 +3,113 @@
 <html lang="en">
 
 {% block head %}
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Who's this SuperGM?</title>
-<meta name="description" content="Guess the SuperGM.">
-<meta name="author" content="Philipp Otto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="/assets/htmx.min.js"></script>
-<script src="/assets/htmx-response-targets.js"></script>
-<link rel="stylesheet" href="/assets/game.css">
+    <title>Who's this SuperGM?</title>
+    <meta name="description" content="Guess the SuperGM.">
+    <meta name="author" content="Philipp Otto">
 
-<script>
-    var currentGameId = 1337;
-    var currentHintId = 0;
+    <script src="/assets/htmx.min.js"></script>
+    <script src="/assets/htmx-response-targets.js"></script>
 
-    function generateGameId() {
-        currentGameId = Math.floor(Math.random() * 16777215);
-        currentHintId = 0;
-        return currentGameId;
-    }
+    <link rel="stylesheet" href="/assets/game.css">
 
-    function getGameId() {
-        return currentGameId;
-    }
+    <script>
+        var currentGameId = 1337;
+        var currentHintId = 0;
 
-    function getHintId() {
-        return ++currentHintId;
-    }
-
-    function getCurrentAnswer() {
-        var submitElement = document.getElementById("answerBox");
-        if (!submitElement) {
-            return "";
+        function generateGameId() {
+            currentGameId = Math.floor(Math.random() * 16777215);
+            currentHintId = 0;
+            return currentGameId;
         }
-        return submitElement.value;
-    }
 
-    function flashAnswer() {
-        var submitElement = document.getElementById("answerBox");
-        if (submitElement) {
-            submitElement.classList.add("flash-red");
-            setTimeout(() => {
-                submitElement.classList.remove("flash-red");
-            }, 500);
+        function getGameId() {
+            return currentGameId;
         }
-    }
 
-    function copyPrediction() {
-        var submitElement = document.getElementById("answerBox");
-        var predictionElement = document.getElementById("predictionBox");
-        if (submitElement && predictionElement) {
-            submitElement.value = predictionElement.value;
+        function getHintId() {
+            return ++currentHintId;
+        }
 
-            var prediction = document.getElementById("prediction");
-            if (prediction) {
-                prediction.style.display = "none";
+        function getCurrentAnswer() {
+            var submitElement = document.getElementById("answerBox");
+            if (!submitElement) {
+                return "";
+            }
+            return submitElement.value;
+        }
+
+        function flashAnswer() {
+            var submitElement = document.getElementById("answerBox");
+            if (submitElement) {
+                submitElement.classList.add("flash-red");
+                setTimeout(() => {
+                    submitElement.classList.remove("flash-red");
+                }, 500);
             }
         }
-    }
 
-    htmx.on("keydown", function (evt) {
-        if (evt.key === 'Tab') {
-            copyPrediction();
-            evt.preventDefault();
-            evt.stopPropagation();
+        function copyPrediction() {
+            var submitElement = document.getElementById("answerBox");
+            var predictionElement = document.getElementById("predictionBox");
+            if (submitElement && predictionElement) {
+                submitElement.value = predictionElement.value;
+
+                var prediction = document.getElementById("prediction");
+                if (prediction) {
+                    prediction.style.display = "none";
+                }
+            }
         }
-    });
-</script>
+
+        htmx.on("keydown", function (evt) {
+            if (evt.key === 'Tab') {
+                copyPrediction();
+                evt.preventDefault();
+                evt.stopPropagation();
+            }
+        });
+    </script>
+</head>
 {% endblock %}
 
 {% block body %}
-<div class="flexparentrow container">
 
-    <div class="left-chessboard"></div>
+<body hx-ext="response-targets">
+    <div class="flexparentrow container">
 
-    <div class="background">
+        <div class="left-chessboard"></div>
 
-        {% block content %}
-        {% endblock %}
+        <div class="background">
 
-        <div class="flexparentcol bottom">
-            {% block editarea %}
-            <div></div>
+            {% block content %}
             {% endblock %}
 
-            <div class="footer">
-                © Philipp Otto 2023 - Created with
-                <a href="https://www.rust-lang.org/" target=”_blank”>Rust</a>
-                and
-                <a href="https://htmx.org/" target=”_blank”>htmx</a>
-                ❤️ Hosted by
-                <a href="https://fly.io/" target=”_blank”>fly.io</a>
-                🚀
+            <div class="flexparentcol bottom">
+                {% block editarea %}
+                <div></div>
+                {% endblock %}
+
+                <div class="footer">
+                    © Philipp Otto 2023 - Created with
+                    <a href="https://www.rust-lang.org/" target=”_blank”>Rust</a>
+                    and
+                    <a href="https://htmx.org/" target=”_blank”>htmx</a>
+                    ❤️ Hosted by
+                    <a href="https://fly.io/" target=”_blank”>fly.io</a>
+                    🚀
+                </div>
             </div>
         </div>
+
+        <div class="right-chessboard"></div>
+
     </div>
-
-    <div class="right-chessboard"></div>
-
-</div>
+</body>
 {% endblock %}
 
 </html>

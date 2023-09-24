@@ -185,10 +185,14 @@ async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequ
         let template = state.env.get_template("result").unwrap();
         let rendered = template.render(context!(result => result));
 
-        return match rendered {
-            Ok(result) => Html(result).into_response(),
-            Err(..) => Html("").into_response(),
-        };
+        match rendered {
+            Ok(result) => {
+                let mut resp = Html(result).into_response();
+                *resp.status_mut() = StatusCode::CREATED;
+                return resp;
+            }
+            Err(..) => return Html("").into_response(),
+        }
     }
 
     let player_display = player_display.unwrap();
