@@ -112,15 +112,18 @@ a {
     margin: 2em;
 }
 
+.solution {
+    align-items: center;
+    gap: 0.5em;
+}
+
 .result-success {
     text-align: center;
-    font-size: 1.25em;
     color: #64A038;
 }
 
 .result-fail {
     text-align: center;
-    font-size: 1.25em;
     color: #611515;
 }
 
@@ -321,7 +324,7 @@ a {
 
 
 .start-button {
-    width: 45%;
+    width: 75%;
     height: 1.5em;
 
     flex-shrink: 0;

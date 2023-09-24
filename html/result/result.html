@@ -2,33 +2,36 @@
 
 {% block content %}
 <div class="flexparentcol playarea fade-animation">
+    <div class="flexparentcol solution">
+        <h1>{{ result.player.name }}</h1>
+        <img src="{{ result.player.image }}" alt="Player" height="250">
+    </div>
 
-    <h1>{{ result.player.name }}</h1>
-    <img src="{{ result.player.image }}" alt="Player" height="250">
+    <div class="flexparentcol solution">
+        <!-- TODO this whole stats tracking using iframe onload is mega hacky :) It should all be done serverside with a database backing it -->
+        {% if result.success %}
+        <iframe onload="gameLogic.addCorrectAnswer()" style="display: none;"></iframe>
+        <div class="result-success">You found the correct answer!</div>
+        {% else %}
+        <iframe onload="gameLogic.addWrongAnswer()" style="display: none;"></iframe>
+        <div class="result-fail">You did not find the answer in time.</div>
+        {% endif %}
 
-    <!-- TODO this whole stats tracking using iframe onload is mega hacky :) It should all be done serverside with a database backing it -->
-    {% if result.success %}
-    <iframe onload="gameLogic.addCorrectAnswer()" style="display: none;"></iframe>
-    <div class="result-success">You found the correct answer!</div>
-    {% else %}
-    <iframe onload="gameLogic.addWrongAnswer()" style="display: none;"></iframe>
-    <div class="result-fail">You did not find the answer in time.</div>
-    {% endif %}
-
-    <div>Guess time: <span id="gameTime"></span> | Session time: <span id="appTime"></span> | Correct answers: <span
-            id="answerStats"></span> </div>
-    <iframe
-        onload="document.getElementById('gameTime').innerHTML = gameLogic.getGameTime();
+        <div>Guess time: <span id="gameTime"></span> | Session time: <span id="appTime"></span> | Correct answers: <span
+                id="answerStats"></span> </div>
+        <iframe
+            onload="document.getElementById('gameTime').innerHTML = gameLogic.getGameTime();
                 document.getElementById('appTime').innerHTML = gameLogic.getAppTime();
                 document.getElementById('answerStats').innerHTML = gameLogic.getCorrectAnswers() + '/' + gameLogic.getTotalAnswers();"
-        style="display: none;"></iframe>
+            style="display: none;"></iframe>
 
-    <button class="start-button" hx-get="/start_game"
-        hx-vals='js:{"game_id": gameLogic.generateGameId(), "hint_id": gameLogic.getHintId()}' hx-target="body"
-        hx-swap="outerHTML">
-        Play again
-        <div class="enter-hint">(Enter)</div>
-    </button>
+        <button class="start-button" hx-get="/start_game"
+            hx-vals='js:{"game_id": gameLogic.generateGameId(), "hint_id": gameLogic.getHintId()}' hx-target="body"
+            hx-swap="outerHTML">
+            Play again
+            <div class="enter-hint">(Enter)</div>
+        </button>
+    </div>
 
     {% for line in result.player.lines %}
     <div class="flexparentrow playline">
