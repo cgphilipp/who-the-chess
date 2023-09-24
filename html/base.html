@@ -44,13 +44,19 @@
         }
 
         function flashAnswer() {
-            var submitElement = document.getElementById("answerBox");
-            if (submitElement) {
-                submitElement.classList.add("flash-red");
-                setTimeout(() => {
-                    submitElement.classList.remove("flash-red");
-                }, 500);
-            }
+            // add delay of 50ms in case the server determines a correct answer
+            setTimeout(() => {
+                var submitElement = document.getElementById("answerBox");
+                if (submitElement) {
+                    submitElement.classList.add("flash-red");
+
+                    // remove the flashing after a timeout to allow it to be reapplied
+                    setTimeout(() => {
+                        submitElement.classList.remove("flash-red");
+                    }, 500);
+                }
+            }, 50);
+
         }
 
         function copyPrediction() {
