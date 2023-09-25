@@ -9,8 +9,8 @@
     </div>
     {% endfor %}
 
-    <img class="fade-animation" src="{{ img_src }}" alt="Player" height="250" {% if not show_image %}
-        style="display: none;" {% endif %}>
+    <img class="fade-animation" src="{{ img_src }}" alt="Player" {% if not show_image %} style="display: none;" {% endif
+        %} style="height:13em;">
 
     <div class="progressbar-wrapper">
         <div class="progressbar"></div>

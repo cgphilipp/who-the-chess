@@ -69,7 +69,7 @@ function getCurrentAnswer() {
 }
 
 function flashAnswer() {
-    // add delay of 50ms in case the server determines a correct answer
+    // add delay in case the server determines a correct answer
     setTimeout(() => {
         var submitElement = document.getElementById("answerBox");
         if (submitElement) {
@@ -78,7 +78,7 @@ function flashAnswer() {
             // remove the flashing after a timeout to allow it to be reapplied
             setTimeout(() => {
                 submitElement.classList.remove("flash-red");
-            }, 500);
+            }, 1000);
         }
     }, 50);
 

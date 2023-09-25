@@ -165,34 +165,38 @@ async fn start_game(
     }
 }
 
+fn resolve_game(state: AppState<'_>, request: Query<GameRequest>) -> Response {
+    let player_display = get_player_display(&state.player_infos, request.game_id, MAX_HINT)
+        .unwrap_or(PlayerDisplay {
+            name: "".to_string(),
+            lines: vec![],
+            image: "".to_string(),
+        });
+
+    let result = GameResultDisplay {
+        success: false,
+        time: "".to_string(),
+        player: player_display,
+    };
+
+    let template = state.env.get_template("result").unwrap();
+    let rendered = template.render(context!(result => result));
+
+    match rendered {
+        Ok(result) => {
+            let mut resp = Html(result).into_response();
+            *resp.status_mut() = StatusCode::CREATED;
+            return resp;
+        }
+        Err(..) => return Html("").into_response(),
+    }
+}
+
 async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequest>) -> Response {
     let player_display = get_player_display(&state.player_infos, request.game_id, request.hint_id);
 
     if player_display.is_none() {
-        let player_display = get_player_display(&state.player_infos, request.game_id, MAX_HINT)
-            .unwrap_or(PlayerDisplay {
-                name: "".to_string(),
-                lines: vec![],
-                image: "".to_string(),
-            });
-
-        let result = GameResultDisplay {
-            success: false,
-            time: "".to_string(),
-            player: player_display,
-        };
-
-        let template = state.env.get_template("result").unwrap();
-        let rendered = template.render(context!(result => result));
-
-        match rendered {
-            Ok(result) => {
-                let mut resp = Html(result).into_response();
-                *resp.status_mut() = StatusCode::CREATED;
-                return resp;
-            }
-            Err(..) => return Html("").into_response(),
-        }
+        return resolve_game(state, request);
     }
 
     let player_display = player_display.unwrap();
@@ -208,6 +212,10 @@ async fn get_category(State(state): State<AppState<'_>>, request: Query<GameRequ
         Ok(result) => Html(result).into_response(),
         Err(..) => Html("").into_response(),
     }
+}
+
+async fn skip(State(state): State<AppState<'_>>, request: Query<GameRequest>) -> Response {
+    resolve_game(state, request)
 }
 
 async fn get_prediction(
@@ -353,6 +361,7 @@ async fn main() {
         .route("/start_game", get(start_game))
         .route("/category", get(get_category))
         .route("/answer", get(submit_answer))
+        .route("/skip", get(skip))
         .route("/prediction", get(get_prediction))
         .route("/assets/*path", get(assets))
         .with_state(state);
