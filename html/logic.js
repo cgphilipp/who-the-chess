@@ -16,7 +16,10 @@ class GameLogic {
     }
 
     generateGameId() {
-        this._currentGameId = Math.floor(Math.random() * 16777215);
+        const array = new Uint32Array(1);
+        crypto.getRandomValues(array);
+
+        this._currentGameId = array[0];
         this._currentHintId = 0;
         this._gameStartTime = Date.now();
         return this._currentGameId;

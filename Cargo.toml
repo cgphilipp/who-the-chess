@@ -3,19 +3,6 @@ name = "chessle"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name = "backend"
-path = "src/backend/main.rs"
-
-[[bin]]
-name = "data-processing"
-path = "src/data-processing/main.rs"
-
-[[bin]]
-name = "schema-creator"
-path = "src/schema-creator/main.rs"
-
-
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -27,4 +14,20 @@ minijinja = "1.0"
 chrono = "0.4"
 include_dir = "0.7"
 mime_guess = "2.0"
-sqlx = { version = "0.7", features = ["runtime-tokio-native-tls", "sqlite"] }
+sqlx = { version = "0.7", features = ["runtime-tokio-native-tls", "sqlite"], optional = true}
+
+[features]
+build-sqlx = ["sqlx"]
+
+[[bin]]
+name = "backend"
+path = "src/backend/main.rs"
+
+[[bin]]
+name = "data-processing"
+path = "src/data-processing/main.rs"
+
+[[bin]]
+name = "schema-creator"
+path = "src/schema-creator/main.rs"
+required-features = ["build-sqlx"]
