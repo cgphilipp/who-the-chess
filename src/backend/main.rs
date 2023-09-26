@@ -85,6 +85,12 @@ fn get_player_display(
     let player_id = game_id as usize % player_infos.len();
     let info = player_infos.get(player_id).unwrap();
 
+    let gm_year_string = if info.year_of_gm == 0 {
+        "Not a GM".to_string()
+    } else {
+        info.year_of_gm.to_string()
+    };
+
     let lines = vec![
         Line {
             category: "Peak rating".to_string(),
@@ -98,7 +104,7 @@ fn get_player_display(
         },
         Line {
             category: "Year of GM title".to_string(),
-            answer: info.year_of_gm.to_string(),
+            answer: gm_year_string,
             animated: hint_nr == 3,
         },
         Line {

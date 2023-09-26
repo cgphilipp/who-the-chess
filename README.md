@@ -1,4 +1,4 @@
-# Who's this SuperGM?
+# Who the chess?
 
 A fun little quiz game about chess grandmasters implemented in Rust and htmx.
 

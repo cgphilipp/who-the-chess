@@ -92,7 +92,7 @@ function copyPrediction() {
 
         var prediction = document.getElementById("prediction");
         if (prediction) {
-            prediction.style.display = "none";
+            prediction.innerHTML = "";
         }
     }
 }

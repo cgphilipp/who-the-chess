@@ -5,7 +5,12 @@
 {% endblock %}
 
 {% block editarea %}
-{% include 'prediction' %}
+
+<div class="flexparentrow editparent">
+  {% include 'prediction' %}
+  <button class="skip-button" hx-get="/skip" hx-target="body"
+    hx-vals='js:{"game_id": gameLogic.getGameId(), "hint_id": gameLogic.getHintId()}'>Skip</button>
+</div>
 
 <form class="flexparentrow editparent" autocomplete="off" hx-get="/answer" hx-target="body" hx-swap="outerHTML"
   hx-vals='js:{"game_id": gameLogic.getGameId(), "name": getCurrentAnswer()}' hx-on:submit="flashAnswer()">

@@ -18,20 +18,6 @@
         ]
     },
     {
-        "name": "Yuriy Kryvoruchko",
-        "birth_date": "19.12.1986",
-        "birth_place": "Lviv",
-        "year_of_gm": 2006,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2717,
-        "sport_country": "Ukraine",
-        "citizenship_country": "Ukraine",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/2022-Yurij-Kryvoruchko.JPG"
-        ]
-    },
-    {
         "name": "Wesley So",
         "birth_date": "9.10.1993",
         "birth_place": "Bacoor",
@@ -99,35 +85,6 @@
         "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Ding%20Liren%20in%202023%20%28cropped%29.jpg"
-        ]
-    },
-    {
-        "name": "Valery Salov",
-        "birth_date": "26.5.1964",
-        "birth_place": "Wrocław",
-        "year_of_gm": 1986,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2715,
-        "sport_country": "Soviet Union",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Valery%20Salov%201989.jpg"
-        ]
-    },
-    {
-        "name": "Sergei Rublevsky",
-        "birth_date": "15.10.1974",
-        "birth_place": "Kurgan",
-        "year_of_gm": 1994,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2706,
-        "sport_country": "Soviet Union",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Sergei%20Rublevsky%202006.jpg",
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Sergey%20Rublevsky.jpg"
         ]
     },
     {
@@ -265,22 +222,6 @@
         "citizenship_country": "India",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Arjun%20Erigaisi%20in%202023.jpg"
-        ]
-    },
-    {
-        "name": "Liviu-Dieter Nisipeanu",
-        "birth_date": "1.8.1976",
-        "birth_place": "Brașov",
-        "year_of_gm": 1997,
-        "chess_com_name": [
-            "LiviuDieterNisipeanu"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2707,
-        "sport_country": "Germany",
-        "citizenship_country": "Romania",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Nisipeanu%2CLiviu-Dieter%202016%20Dortmund.jpeg"
         ]
     },
     {
@@ -589,25 +530,6 @@
         ]
     },
     {
-        "name": "Gabriel Sargissian",
-        "birth_date": "3.9.1983",
-        "birth_place": "Yerevan",
-        "year_of_gm": 2002,
-        "chess_com_name": [
-            "Arm-Akiba"
-        ],
-        "lichess_name": [
-            "Arm-Akiba"
-        ],
-        "peak_rating": 2711,
-        "sport_country": "Armenia",
-        "citizenship_country": "Armenia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Gabriel%20Sargissian%20Warsaw%202013.jpg",
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Sargissian%20Gabriel.jpg"
-        ]
-    },
-    {
         "name": "Sergei Movsesian",
         "birth_date": "3.11.1978",
         "birth_place": "Tbilisi",
@@ -670,20 +592,6 @@
         "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/WangHao13a.jpg"
-        ]
-    },
-    {
-        "name": "Denis Khismatullin",
-        "birth_date": "28.12.1984",
-        "birth_place": "Neftekamsk",
-        "year_of_gm": 2004,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2714,
-        "sport_country": "Russia",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Denis%20Khismatullin%20Satka%202018.jpg"
         ]
     },
     {
@@ -755,22 +663,6 @@
         "citizenship_country": "Azerbaijan",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Teymur%20R%C9%99c%C9%99bov.jpg"
-        ]
-    },
-    {
-        "name": "Michal Krasenkow",
-        "birth_date": "14.11.1963",
-        "birth_place": "Moscow",
-        "year_of_gm": 1989,
-        "chess_com_name": [
-            "mickey632702"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2702,
-        "sport_country": "Russia",
-        "citizenship_country": "Poland",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/2021-Michal-Krasenkow.JPG"
         ]
     },
     {
@@ -876,60 +768,6 @@
         ]
     },
     {
-        "name": "Vladislav Kovalev",
-        "birth_date": "6.1.1994",
-        "birth_place": "Minsk",
-        "year_of_gm": 2013,
-        "chess_com_name": [
-            "vladislavkovalev"
-        ],
-        "lichess_name": [
-            "Esssquire"
-        ],
-        "peak_rating": 2703,
-        "sport_country": "FIDE",
-        "citizenship_country": "Belarus",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Vladislav%20Kovalev%202013.jpg"
-        ]
-    },
-    {
-        "name": "Evgeniy Najer",
-        "birth_date": "22.6.1977",
-        "birth_place": "Moscow",
-        "year_of_gm": 1999,
-        "chess_com_name": [
-            "ENajer77"
-        ],
-        "lichess_name": [
-            "ENajer"
-        ],
-        "peak_rating": 2707,
-        "sport_country": "Russia",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Evgeni%20Najer.jpg"
-        ]
-    },
-    {
-        "name": "Igor Kovalenko",
-        "birth_date": "29.12.1988",
-        "birth_place": "Novomoskovsk",
-        "year_of_gm": 2011,
-        "chess_com_name": [
-            "igorkovalenko"
-        ],
-        "lichess_name": [
-            "IVK88"
-        ],
-        "peak_rating": 2702,
-        "sport_country": "Ukraine",
-        "citizenship_country": "Ukraine",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Igor%20Kovalenko%202013.JPG"
-        ]
-    },
-    {
         "name": "Markus Ragger",
         "birth_date": "5.2.1988",
         "birth_place": "Klagenfurt",
@@ -1032,20 +870,6 @@
         ]
     },
     {
-        "name": "Ferenc Berkes",
-        "birth_date": "8.8.1985",
-        "birth_place": "Baja",
-        "year_of_gm": 2002,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2706,
-        "sport_country": "Hungary",
-        "citizenship_country": "Hungary",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/2021-Ferenc-Berkes.JPG"
-        ]
-    },
-    {
         "name": "Ray Robson",
         "birth_date": "25.10.1994",
         "birth_place": "Guam",
@@ -1075,20 +899,6 @@
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Alexander%20Riazantsev%202013.jpg",
             "http://commons.wikimedia.org/wiki/Special:FilePath/Alexander%20Riazantsev%20World%20Rapid%20Chess%20Championship.jpg"
-        ]
-    },
-    {
-        "name": "Emil Sutovsky",
-        "birth_date": "19.9.1977",
-        "birth_place": "Baku",
-        "year_of_gm": 1996,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2703,
-        "sport_country": "Israel",
-        "citizenship_country": "Soviet Union",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/ESutovsky.jpg"
         ]
     },
     {
@@ -1137,22 +947,6 @@
         "citizenship_country": "China",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Bu%20Xiangzhi%20Mtel%20Masters.jpg"
-        ]
-    },
-    {
-        "name": "Ilya Smirin",
-        "birth_date": "12.1.1968",
-        "birth_place": "Vitebsk",
-        "year_of_gm": 1990,
-        "chess_com_name": [
-            "Tapuah"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2702,
-        "sport_country": "Israel",
-        "citizenship_country": "Israel",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Smirin%20Ilia.jpg"
         ]
     },
     {
@@ -1409,22 +1203,6 @@
         ]
     },
     {
-        "name": "Sanan Sjugirov",
-        "birth_date": "31.1.1993",
-        "birth_place": "Elista",
-        "year_of_gm": 2008,
-        "chess_com_name": [
-            "Sanan_Sjugirov"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2712,
-        "sport_country": "Russia",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/SananSjugirov19.jpg"
-        ]
-    },
-    {
         "name": "Evgeny Alekseev",
         "birth_date": "28.11.1985",
         "birth_place": "Pushkin",
@@ -1580,7 +1358,7 @@
     {
         "name": "Shakhriyar Mamedyarov",
         "birth_date": "12.4.1985",
-        "birth_place": "Sumgait, Azerbaijan Soviet Socialist Republic",
+        "birth_place": "Sumgait, Azerbaijan",
         "year_of_gm": 2002,
         "chess_com_name": [
             "Azerichessss",
@@ -1632,22 +1410,6 @@
         ]
     },
     {
-        "name": "Alexander Motylev",
-        "birth_date": "17.6.1979",
-        "birth_place": "Yekaterinburg",
-        "year_of_gm": 2000,
-        "chess_com_name": [
-            "almo64"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2710,
-        "sport_country": "Romania",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/AlexanderMotylev14.jpg"
-        ]
-    },
-    {
         "name": "Luke McShane",
         "birth_date": "7.1.1984",
         "birth_place": "London",
@@ -1664,22 +1426,6 @@
         ]
     },
     {
-        "name": "Alexey Dreev",
-        "birth_date": "30.1.1969",
-        "birth_place": "Stavropol",
-        "year_of_gm": 1989,
-        "chess_com_name": [
-            "Igrok3069"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2711,
-        "sport_country": "Soviet Union",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Alexey%20Dreev%202012.jpg"
-        ]
-    },
-    {
         "name": "Vugar Gashimov",
         "birth_date": "24.7.1986",
         "birth_place": "Baku",
@@ -1692,22 +1438,6 @@
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/VugarGashimov10.jpg",
             "http://commons.wikimedia.org/wiki/Special:FilePath/VugarGashimov11.jpg"
-        ]
-    },
-    {
-        "name": "Alexander Onischuk",
-        "birth_date": "3.9.1975",
-        "birth_place": "Simferopol",
-        "year_of_gm": 1994,
-        "chess_com_name": [
-            "AlexOnischuk"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2701,
-        "sport_country": "Soviet Union",
-        "citizenship_country": "USA",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Onischuk%20Alexander.jpg"
         ]
     },
     {
@@ -1761,41 +1491,9 @@
         ]
     },
     {
-        "name": "Zurab Azmaiparashvili",
-        "birth_date": "16.3.1960",
-        "birth_place": "Tbilisi",
-        "year_of_gm": 1988,
-        "chess_com_name": [
-            "ZURAAZMAI"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2702,
-        "sport_country": "Soviet Union",
-        "citizenship_country": "Soviet Union",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Zurab%20Azmaiparashvili.jpg"
-        ]
-    },
-    {
-        "name": "Vladimir Akopian",
-        "birth_date": "7.12.1971",
-        "birth_place": "Baku",
-        "year_of_gm": 1991,
-        "chess_com_name": [
-            "GMValeduser"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2713,
-        "sport_country": "Soviet Union",
-        "citizenship_country": "Armenia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/VAkopian.jpg"
-        ]
-    },
-    {
         "name": "Pavel Eljanov",
         "birth_date": "10.5.1983",
-        "birth_place": "Kharkiv, Ukrainian Soviet Socialist Republic",
+        "birth_place": "Kharkiv, Ukraine",
         "year_of_gm": 2000,
         "chess_com_name": [
             "Keyzer-Soze",
@@ -1849,7 +1547,7 @@
     {
         "name": "Andrei Volokitin",
         "birth_date": "18.6.1986",
-        "birth_place": "Lviv, Ukrainian Soviet Socialist Republic",
+        "birth_place": "Lviv, Ukraine",
         "year_of_gm": 2001,
         "chess_com_name": [],
         "lichess_name": [],
@@ -1877,36 +1575,6 @@
         ]
     },
     {
-        "name": "Romain Edouard",
-        "birth_date": "28.11.1990",
-        "birth_place": "Poitiers",
-        "year_of_gm": 2009,
-        "chess_com_name": [
-            "Mugzyyy"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2702,
-        "sport_country": "France",
-        "citizenship_country": "France",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Romain%20Edouard%202013.jpg"
-        ]
-    },
-    {
-        "name": "Viktor Laznicka",
-        "birth_date": "3.11.1988",
-        "birth_place": "Pardubice",
-        "year_of_gm": 2006,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2704,
-        "sport_country": "Czech Republic",
-        "citizenship_country": "Czech Republic",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Viktor%20L%C3%A1zni%C4%8Dka%202013.jpg"
-        ]
-    },
-    {
         "name": "David Navara",
         "birth_date": "27.3.1985",
         "birth_place": "Prague",
@@ -1920,20 +1588,6 @@
         "citizenship_country": "Czech Republic",
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/2021-David-Navara.JPG"
-        ]
-    },
-    {
-        "name": "Vadim Milov",
-        "birth_date": "1.8.1972",
-        "birth_place": "Ufa, Bashkir Autonomous Soviet Socialist Republic",
-        "year_of_gm": 1993,
-        "chess_com_name": [],
-        "lichess_name": [],
-        "peak_rating": 2705,
-        "sport_country": "Israel",
-        "citizenship_country": "Switzerland",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Vadim%20Milov.jpg"
         ]
     },
     {
@@ -2040,24 +1694,6 @@
         ]
     },
     {
-        "name": "Boris Grachev",
-        "birth_date": "27.3.1986",
-        "birth_place": "Moscow",
-        "year_of_gm": 2007,
-        "chess_com_name": [
-            "Guenplen"
-        ],
-        "lichess_name": [
-            "NeverEnough"
-        ],
-        "peak_rating": 2705,
-        "sport_country": "Russia",
-        "citizenship_country": "Russia",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/BorisGrachev11.jpg"
-        ]
-    },
-    {
         "name": "Rauf Mamedov",
         "birth_date": "26.4.1988",
         "birth_place": "Baku",
@@ -2159,22 +1795,6 @@
         ]
     },
     {
-        "name": "Ivan Sokolov",
-        "birth_date": "13.6.1968",
-        "birth_place": "Sarajevo",
-        "year_of_gm": 1987,
-        "chess_com_name": [
-            "vegasicilia"
-        ],
-        "lichess_name": [],
-        "peak_rating": 2706,
-        "sport_country": "Yugoslavia",
-        "citizenship_country": "Netherlands",
-        "images": [
-            "http://commons.wikimedia.org/wiki/Special:FilePath/Sokolov%20ivan%2020100521%20berlin%203.jpg"
-        ]
-    },
-    {
         "name": "Vasyl Ivanchuk",
         "birth_date": "1.1.1969",
         "birth_place": "Kopychyntsi",
@@ -2203,6 +1823,610 @@
         "images": [
             "http://commons.wikimedia.org/wiki/Special:FilePath/Bobby%20Fischer%201972%20%28cropped%29.jpg",
             "http://commons.wikimedia.org/wiki/Special:FilePath/Bobby%20Fischer%201960%20in%20Leipzig%20in%20color.jpg"
+        ]
+    },
+    {
+        "name": "Aman Hambleton",
+        "birth_date": "30.12.1992",
+        "birth_place": "Halifax",
+        "year_of_gm": 2018,
+        "chess_com_name": [
+            "KNVB",
+            "Telos"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2509,
+        "sport_country": "Canada",
+        "citizenship_country": "Canada",
+        "images": [
+            "https://pbs.twimg.com/profile_images/1672301342319099927/0jrNHf7B_400x400.jpg"
+        ]
+    },
+    {
+        "name": "Emanuel Lasker",
+        "birth_date": "24.12.1868",
+        "birth_place": "Barlinek",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 0,
+        "sport_country": "German Empire",
+        "citizenship_country": "Weimar Republic",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Bundesarchiv%20Bild%20102-00457%2C%20Emanuel%20Lasker.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Bundesarchiv%20Bild%20102-14194%2C%20Emanuel%20Lasker.jpg"
+        ]
+    },
+    {
+        "name": "Tigran Petrosian",
+        "birth_date": "17.6.1929",
+        "birth_place": "Tbilisi",
+        "year_of_gm": 1952,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 2660,
+        "sport_country": "Soviet Union",
+        "citizenship_country": "Soviet Union",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Tigran%20Petrosian%20World%20Chess%20Champion.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Anefo%20910-9356%20Hoogovenschaaktoernooi.jpg"
+        ]
+    },
+    {
+        "name": "agadmator",
+        "birth_date": "16.6.1987",
+        "birth_place": "Križevci",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "AGADMATOR"
+        ],
+        "lichess_name": [
+            "agadmator"
+        ],
+        "peak_rating": 2010,
+        "sport_country": "Croatia",
+        "citizenship_country": "Croatia",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Agadmator.jpg"
+        ]
+    },
+    {
+        "name": "Daniel King",
+        "birth_date": "28.8.1963",
+        "birth_place": "Beckenham",
+        "year_of_gm": 1989,
+        "chess_com_name": [
+            "DanielKing"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2560,
+        "sport_country": "England",
+        "citizenship_country": "England",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Daniel%20king.jpg"
+        ]
+    },
+    {
+        "name": "Ben Finegold",
+        "birth_date": "6.9.1969",
+        "birth_place": "Detroit",
+        "year_of_gm": 2009,
+        "chess_com_name": [
+            "BFinegold-STL",
+            "GMBenjaminFinegold"
+        ],
+        "lichess_name": [
+            "CCSCATL"
+        ],
+        "peak_rating": 2563,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Benjamin%20Finegold%202009.jpg"
+        ]
+    },
+    {
+        "name": "Boris Spassky",
+        "birth_date": "30.1.1937",
+        "birth_place": "Saint Petersburg",
+        "year_of_gm": 1955,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 2690,
+        "sport_country": "Soviet Union",
+        "citizenship_country": "Soviet Union",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Dhr.%20Boris%20Spassky%2C%20Bestanddeelnr%20932-7320.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Boris%20Spasski%201984%20Saloniki.jpg"
+        ]
+    },
+    {
+        "name": "Anna Cramling",
+        "birth_date": "30.4.2002",
+        "birth_place": "Málaga",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "annacramling"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2175,
+        "sport_country": "Sweden",
+        "citizenship_country": "Sweden",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Anna%20Cramling%202021%20DSC%201765.jpg"
+        ]
+    },
+    {
+        "name": "Robert Hess",
+        "birth_date": "19.12.1991",
+        "birth_place": "New York City",
+        "year_of_gm": 2009,
+        "chess_com_name": [
+            "GMHess",
+            "Hess-CON",
+            "RLH2",
+            "SxSW2"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2639,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/RobertHess19.jpg"
+        ]
+    },
+    {
+        "name": "Anna Rudolf",
+        "birth_date": "12.11.1987",
+        "birth_place": "Miskolc",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "Anna_Chess"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2393,
+        "sport_country": "Hungary",
+        "citizenship_country": "Hungary",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Anna%20Rudolf%202016%20%28cropped%29.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Anna%20Rudolf%202015%20Andorra%20Open%20Round%203.jpg"
+        ]
+    },
+    {
+        "name": "Hou Yifan",
+        "birth_date": "27.2.1994",
+        "birth_place": "Xinghua",
+        "year_of_gm": 2008,
+        "chess_com_name": [
+            "yifan0227"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2686,
+        "sport_country": "China",
+        "citizenship_country": "China",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Hou%20Yifan%2C%202012%20%28cropped%29.jpg"
+        ]
+    },
+    {
+        "name": "Ju Wenjun",
+        "birth_date": "31.1.1991",
+        "birth_place": "Shanghai",
+        "year_of_gm": 2014,
+        "chess_com_name": [
+            "Juwen"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2604,
+        "sport_country": "China",
+        "citizenship_country": "China",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Ju%20Wenjun%20%282016.09%29%20%28cropped%29.jpg"
+        ]
+    },
+    {
+        "name": "Eric Rosen",
+        "birth_date": "3.9.1993",
+        "birth_place": "Evanston",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "IMRosen"
+        ],
+        "lichess_name": [
+            "EricRosen"
+        ],
+        "peak_rating": 2423,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Eric%20Rosen.jpg"
+        ]
+    },
+    {
+        "name": "Simon Williams",
+        "birth_date": "30.11.1979",
+        "birth_place": "Guildford",
+        "year_of_gm": 2008,
+        "chess_com_name": [
+            "Ginger_GM"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2550,
+        "sport_country": "England",
+        "citizenship_country": "United Kingdom",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Simon%20Williams%20%28born%201979%29%20-31063444013.jpg"
+        ]
+    },
+    {
+        "name": "Tan Zhongyi",
+        "birth_date": "29.5.1991",
+        "birth_place": "Chongqing",
+        "year_of_gm": 2017,
+        "chess_com_name": [
+            "daika91"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2530,
+        "sport_country": "China",
+        "citizenship_country": "China",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Tan%20Zhongyi%20%2829517169160%29%20%28cropped%29.jpg"
+        ]
+    },
+    {
+        "name": "Yasser Seirawan",
+        "birth_date": "24.3.1960",
+        "birth_place": "Damascus",
+        "year_of_gm": 1980,
+        "chess_com_name": [
+            "GMYAZ"
+        ],
+        "lichess_name": [
+            "yasser-seirawan"
+        ],
+        "peak_rating": 2658,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Seirawan0301%20137.jpg"
+        ]
+    },
+    {
+        "name": "Tania Sachdev",
+        "birth_date": "20.8.1986",
+        "birth_place": "Delhi",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "Tania_S"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2443,
+        "sport_country": "India",
+        "citizenship_country": "India",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Tania%20Sachdev%20%2829793031373%29%20%28cropped%29.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Tania%20Sachdev%20%28IND%29.jpg"
+        ]
+    },
+    {
+        "name": "José Raúl Capablanca",
+        "birth_date": "19.11.1888",
+        "birth_place": "Havana, Captaincy General of Cuba",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [
+            "JRCapablancaaa"
+        ],
+        "peak_rating": 0,
+        "sport_country": "Cuba",
+        "citizenship_country": "Spain",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Jos%C3%A9%20Ra%C3%BAl%20Capablanca%20young%20cr.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Jos%C3%A9%20Ra%C3%BAl%20Capablanca%201931.jpg"
+        ]
+    },
+    {
+        "name": "Mikhail Botvinnik",
+        "birth_date": "17.8.1911",
+        "birth_place": "Repino",
+        "year_of_gm": 1950,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 0,
+        "sport_country": "Soviet Union",
+        "citizenship_country": "Soviet Union",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Botvinnik%201933.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Mikhail%20Botvinnik%201962.jpg"
+        ]
+    },
+    {
+        "name": "Daniel Rensch",
+        "birth_date": "10.10.1985",
+        "birth_place": "Phoenix",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "danny",
+            "DanielRensch",
+            "DannyRensch"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2416,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Daniel%20Rensch%20%282015%29.jpg"
+        ]
+    },
+    {
+        "name": "Mark Dvoretsky",
+        "birth_date": "9.12.1947",
+        "birth_place": "Moscow",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 2540,
+        "sport_country": "Russia",
+        "citizenship_country": "Russia",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Dvoretsky%20Mark.jpg"
+        ]
+    },
+    {
+        "name": "Vera Menchik",
+        "birth_date": "16.2.1906",
+        "birth_place": "Moscow",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 0,
+        "sport_country": "England",
+        "citizenship_country": "United Kingdom",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Vera%20Menchik%201933.jpg"
+        ]
+    },
+    {
+        "name": "Qiyu Zhou",
+        "birth_date": "6.1.2000",
+        "birth_place": "Jingzhou",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "CLG_Nemsko",
+            "Nemsko"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2367,
+        "sport_country": "Canada",
+        "citizenship_country": "Canada",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Qiyu%20Zhou%20at%20the%202014%20World%20Youth%20Chess%20Championships%20in%20Durban%2C%20South%20Africa.jpg"
+        ]
+    },
+    {
+        "name": "Frank Marshall",
+        "birth_date": "10.8.1877",
+        "birth_place": "Brooklyn",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 0,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Frank%20Marshall%20%28chess%20player%29.jpg"
+        ]
+    },
+    {
+        "name": "Dina Belenkaya",
+        "birth_date": "22.12.1993",
+        "birth_place": "Saint Petersburg",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "DinaBelenkaya"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2364,
+        "sport_country": "Israel",
+        "citizenship_country": "Israel",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Dina%20Belenkaya%20Women%27s%20Chess%20Bundesliga%20Bad%20K%C3%B6nigshofen%202023.jpg"
+        ]
+    },
+    {
+        "name": "Max Euwe",
+        "birth_date": "20.5.1901",
+        "birth_place": "Amsterdam",
+        "year_of_gm": 1950,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 0,
+        "sport_country": "Netherlands",
+        "citizenship_country": "Kingdom of the Netherlands",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Max%20Euwe%20%281979%29.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Max%20Euwe%201963.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Max%20Euwe%201973.jpg"
+        ]
+    },
+    {
+        "name": "Anna Ushenina",
+        "birth_date": "30.8.1985",
+        "birth_place": "Kharkiv",
+        "year_of_gm": 2012,
+        "chess_com_name": [
+            "Enki007"
+        ],
+        "lichess_name": [
+            "Enki007"
+        ],
+        "peak_rating": 2502,
+        "sport_country": "Ukraine",
+        "citizenship_country": "Ukraine",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Ushenina%20Anna%20%2830273298782%29%20%28cropped%29.jpg"
+        ]
+    },
+    {
+        "name": "Alexander Alekhine",
+        "birth_date": "31.10.1892",
+        "birth_place": "Moscow",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 0,
+        "sport_country": "France",
+        "citizenship_country": "Soviet Union",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Alexandre%20Alekhine%20Color.jpg"
+        ]
+    },
+    {
+        "name": "Daniel Naroditsky",
+        "birth_date": "9.11.1995",
+        "birth_place": "San Mateo",
+        "year_of_gm": 2013,
+        "chess_com_name": [
+            "DanielNaroditsky",
+            "Naroditsky-SF"
+        ],
+        "lichess_name": [
+            "RebeccaHarris"
+        ],
+        "peak_rating": 2647,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Daniel%20Naroditsky%202012.JPG"
+        ]
+    },
+    {
+        "name": "Wilhelm Steinitz",
+        "birth_date": "17.5.1836",
+        "birth_place": "Prague",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 2826,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Wilhelm%20Steinitz2.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Wilhelm%20Steinitz.jpg"
+        ]
+    },
+    {
+        "name": "Alexandra Kosteniuk",
+        "birth_date": "23.4.1984",
+        "birth_place": "Perm",
+        "year_of_gm": 2004,
+        "chess_com_name": [
+            "ChessQueen"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2561,
+        "sport_country": "Russia",
+        "citizenship_country": "Russia",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Alexandra%20Kosteniuk%202%20Satka%202018.jpg"
+        ]
+    },
+    {
+        "name": "Mariya Muzychuk",
+        "birth_date": "21.9.1992",
+        "birth_place": "Lviv",
+        "year_of_gm": 2015,
+        "chess_com_name": [
+            "MariyaGM"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2563,
+        "sport_country": "Ukraine",
+        "citizenship_country": "Ukraine",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/2022-Mariya-Muzychuk.JPG"
+        ]
+    },
+    {
+        "name": "John Bartholomew",
+        "birth_date": "1.1.1986",
+        "birth_place": "",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "Fins0905"
+        ],
+        "lichess_name": [
+            "Fins"
+        ],
+        "peak_rating": 2477,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/London%20Chess%20Classic%202016%20Day3-15%20%2831493243111%29.jpg"
+        ]
+    },
+    {
+        "name": "Siegbert Tarrasch",
+        "birth_date": "5.3.1862",
+        "birth_place": "Wrocław, German Empire",
+        "year_of_gm": 0,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 0,
+        "sport_country": "Germany",
+        "citizenship_country": "Germany",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Dr.%20Siegbert%20Tarrasch.jpg"
+        ]
+    },
+    {
+        "name": "Susan Polgar",
+        "birth_date": "19.4.1969",
+        "birth_place": "Budapest",
+        "year_of_gm": 1991,
+        "chess_com_name": [],
+        "lichess_name": [],
+        "peak_rating": 2577,
+        "sport_country": "USA",
+        "citizenship_country": "Hungary",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Susan%20Polgar%206.jpg"
+        ]
+    },
+    {
+        "name": "Eric Hansen",
+        "birth_date": "24.5.1992",
+        "birth_place": "Irvine",
+        "year_of_gm": 2013,
+        "chess_com_name": [
+            "erichansen"
+        ],
+        "lichess_name": [],
+        "peak_rating": 2629,
+        "sport_country": "Canada",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Eric%20Hansen%202014%20Iceland%20-%20Reykavik%20Tournament.jpg",
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Hansen%20Eric%20%2830299184651%29.jpg"
+        ]
+    },
+    {
+        "name": "Levy Rozman",
+        "birth_date": "5.12.1995",
+        "birth_place": "Brooklyn",
+        "year_of_gm": 0,
+        "chess_com_name": [
+            "GothamChess"
+        ],
+        "lichess_name": [
+            "Crew64"
+        ],
+        "peak_rating": 2421,
+        "sport_country": "USA",
+        "citizenship_country": "USA",
+        "images": [
+            "http://commons.wikimedia.org/wiki/Special:FilePath/Levy%20Rozman%202021%20interview%20with%20ChessRU.jpg"
         ]
     }
 ]

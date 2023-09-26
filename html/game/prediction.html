@@ -1,17 +1,12 @@
-<div class="flexparentrow editparent" id="prediction">
-    {% if show_prediction %}
+{% if show_prediction %}
 
-    <div class="text-wrapper">
-        <input type="text" class="textedit" id="predictionBox" value="{{ prediction }}" hx-on:click="copyPrediction()">
-        <div class="tab-hint">↹ to complete</div>
-    </div>
-    <button class="answer-button">Skip</button>
-
-    {% else %}
-
-    <div style="width: 75%; height: 100%;"></div>
-    <button class="answer-button" hx-get="/skip" hx-target="body"
-        hx-vals='js:{"game_id": gameLogic.getGameId(), "hint_id": gameLogic.getHintId()}'>Skip</button>
-
-    {% endif %}
+<div id="prediction" class="text-wrapper">
+    <input type="text" class="textedit" id="predictionBox" value="{{ prediction }}" hx-on:click="copyPrediction()">
+    <div class="tab-hint">↹ to complete</div>
 </div>
+
+{% else %}
+
+<div id="prediction" class="text-wrapper"></div>
+
+{% endif %}
