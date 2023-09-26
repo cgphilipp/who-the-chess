@@ -62,7 +62,8 @@ a {
 }
 
 .left-chessboard {
-    background: linear-gradient(270deg, #000 -32.56%, #9C9C9C 18.75%, #FFF 99.73%), url("/assets/checkerboard.png");
+    background: linear-gradient(270deg, #000 -32.56%, #9C9C9C 18.75%, #FFF 99.73%), 50% url("/assets/checkerboard.png");
+    background-size: 100% 30%;
     background-blend-mode: screen, multiply, normal;
 
     display: flex;
@@ -76,7 +77,8 @@ a {
 }
 
 .right-chessboard {
-    background: linear-gradient(91deg, #000 -43.76%, #9C9C9C 11.75%, #FFF 99.36%), url("/assets/checkerboard.png");
+    background: linear-gradient(91deg, #000 -43.76%, #9C9C9C 11.75%, #FFF 99.36%), 50% url("/assets/checkerboard.png");
+    background-size: 100% 30%;
     background-blend-mode: screen, multiply, normal;
 
     display: flex;
@@ -90,7 +92,7 @@ a {
 }
 
 .background {
-    background: linear-gradient(90deg, rgba(47, 72, 88, 0.10) 0.36%, rgba(247, 251, 243, 0.10) 37.06%, rgba(247, 251, 243, 0.10) 69.62%, rgba(47, 72, 88, 0.10) 99.6%), #F7FBF3;
+    background: linear-gradient(90deg, rgba(47, 72, 88, 0.2) 0.36%, rgba(247, 251, 243, 0.2) 37.06%, rgba(247, 251, 243, 0.2) 69.62%, rgba(47, 72, 88, 0.2) 99.6%), #F7FBF3;
 
     display: flex;
 
@@ -103,7 +105,7 @@ a {
     justify-content: space-between;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1000px) {
     .left-chessboard {
         display: none;
     }
