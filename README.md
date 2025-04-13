@@ -22,20 +22,15 @@ rewrk -c 256 -t 12 -d 15s -h "http://localhost:8080/prediction?game_id=1337&name
 
 ## Deployment
 
-If you are on Windows, first prepare for cross-compilation to Linux x86: https://github.com/KodrAus/rust-cross-compile
+For deployment in a minimal docker environment it's best to build with musl instead of glibc. This avoids any glibc incompatibilities.
 
-1. Build a release target for x86_64-unknown-linux-musl: `cargo build --target x86_64-unknown-linux-musl --release`
-2. Run `fly launch`
-
-To set the amount of machines per region use
 ```
-fly scale count 1 --region ams
+rustup target add x86_64-unknown-linux-musl
+argo build --release --target=x86_64-unknown-linux-musl
 ```
-This specifies that exactly one machine should run in Amsterdam (`ams`).
 
 ## TODO
 
-- Implement a skipping function
 - Test on mobile devices, account for on-screen keyboard size
 - Move the JS GameLogic class to server-side: generation of game IDs, tracking of game length and success rate
 - Make order of categories more variable
